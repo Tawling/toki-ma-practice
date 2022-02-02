@@ -1,0 +1,25 @@
+.flashcard {
+    width: 250px;
+    height: 250px;
+    border: 3px solid #888;
+    border-radius: 10px;
+    background-color: #333;
+    padding: px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    text-align: center;
+
+    &.card-answer {
+        border-color: #af0f0f;
+    }
+
+    img {
+        object-fit: scale-down;
+        width: 95%;
+        height: 95%;
+        margin: 2.5%;
+    }
+}

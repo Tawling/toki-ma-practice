@@ -1,0 +1,2 @@
+wall
+vertical surface

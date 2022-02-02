@@ -1,0 +1,2025 @@
+{
+  "animals": {
+    "aketi": {
+      "definitions": [
+        "reptile"
+      ],
+      "images": []
+    },
+    "janwa": {
+      "definitions": [
+        "animal"
+      ],
+      "images": []
+    },
+    "kala": {
+      "definitions": [
+        "fish"
+      ],
+      "images": []
+    },
+    "keke": {
+      "definitions": [
+        "primate"
+      ],
+      "images": []
+    },
+    "kita": {
+      "definitions": [
+        "ungulate",
+        "hooved animal"
+      ],
+      "images": [
+        "/images/animals/kita/kita1.jpg"
+      ]
+    },
+    "meja": {
+      "definitions": [
+        "feliformia",
+        "feline animal",
+        "cat"
+      ],
+      "images": []
+    },
+    "misa": {
+      "definitions": [
+        "rodent"
+      ],
+      "images": []
+    },
+    "mu": {
+      "definitions": [
+        "bovidae",
+        "cow",
+        "bovine animal"
+      ],
+      "images": [
+        "/images/animals/mu/mu1.jpeg"
+      ]
+    },
+    "neje": {
+      "definitions": [
+        "equidae",
+        "horse",
+        "equine animal"
+      ],
+      "images": [
+        "/images/animals/neje/neje1.jpg"
+      ]
+    },
+    "pawo": {
+      "definitions": [
+        "caniformia",
+        "dog",
+        "canine animal"
+      ],
+      "images": [
+        "/images/animals/pawo/pawo1.jpg",
+        "/images/animals/pawo/pawo2.jpg"
+      ]
+    },
+    "pipi": {
+      "definitions": [
+        "insect",
+        "pest",
+        "annoyance"
+      ],
+      "images": []
+    },
+    "soweli": {
+      "definitions": [
+        "mammal"
+      ],
+      "images": []
+    },
+    "waso": {
+      "definitions": [
+        "bird"
+      ],
+      "images": []
+    }
+  },
+  "bodyParts": {
+    "awo": {
+      "definitions": [
+        "skin",
+        "to touch",
+        "to contact",
+        "touching"
+      ],
+      "images": []
+    },
+    "ewin": {
+      "definitions": [
+        "nail",
+        "to scratch"
+      ],
+      "images": []
+    },
+    "lawa": {
+      "definitions": [
+        "head",
+        "to lead",
+        "leading"
+      ],
+      "images": []
+    },
+    "luka": {
+      "definitions": [
+        "hand",
+        "to grab"
+      ],
+      "images": []
+    },
+    "noka": {
+      "definitions": [
+        "foot",
+        "to kick"
+      ],
+      "images": []
+    },
+    "talili": {
+      "definitions": [
+        "finger",
+        "to count"
+      ],
+      "images": []
+    },
+    "tanta": {
+      "definitions": [
+        "teeth",
+        "to bite"
+      ],
+      "images": []
+    },
+    "tijelo": {
+      "definitions": [
+        "body",
+        "to hug"
+      ],
+      "images": []
+    },
+    "titi": {
+      "definitions": [
+        "breast",
+        "chest",
+        "to breastfeed"
+      ],
+      "images": []
+    },
+    "uta": {
+      "definitions": [
+        "mouth",
+        "to kiss"
+      ],
+      "images": []
+    }
+  },
+  "colors": {
+    "jelo": {
+      "definitions": [
+        "yellow"
+      ],
+      "images": []
+    },
+    "kapesi": {
+      "definitions": [
+        "brown",
+        "gray"
+      ],
+      "images": []
+    },
+    "laso": {
+      "definitions": [
+        "blue"
+      ],
+      "images": []
+    },
+    "loje": {
+      "definitions": [
+        "red"
+      ],
+      "images": []
+    },
+    "peta": {
+      "definitions": [
+        "green"
+      ],
+      "images": []
+    },
+    "pimeja": {
+      "definitions": [
+        "black"
+      ],
+      "images": []
+    },
+    "walo": {
+      "definitions": [
+        "white"
+      ],
+      "images": []
+    }
+  },
+  "directions": {
+    "anpa": {
+      "definitions": [
+        "bottom side",
+        "downward"
+      ],
+      "images": [
+        "/images/directions/anpa/anpa1.png"
+      ]
+    },
+    "insa": {
+      "definitions": [
+        "inside (place)",
+        "inside-ward"
+      ],
+      "images": [
+        "/images/directions/insa/insa1.png",
+        "/images/directions/insa/insa2.png"
+      ]
+    },
+    "jupa": {
+      "definitions": [
+        "right side",
+        "rightward"
+      ],
+      "images": [
+        "/images/directions/jupa/jupa1.png"
+      ]
+    },
+    "kona": {
+      "definitions": [
+        "corner",
+        "corner-ward"
+      ],
+      "images": [
+        "/images/directions/kona/kona1.png"
+      ]
+    },
+    "matija": {
+      "definitions": [
+        "middle",
+        "middle-ward"
+      ],
+      "images": [
+        "/images/directions/matija/matija1.png"
+      ]
+    },
+    "monsi": {
+      "definitions": [
+        "back side",
+        "backward"
+      ],
+      "images": [
+        "/images/directions/monsi/monsi1.png",
+        "/images/directions/monsi/monsi2.jpg"
+      ]
+    },
+    "nesi": {
+      "definitions": [
+        "outside (place)",
+        "outside-ward"
+      ],
+      "images": [
+        "/images/directions/nesi/nesi1.png",
+        "/images/directions/nesi/nesi2.png"
+      ]
+    },
+    "poka": {
+      "definitions": [
+        "nearby"
+      ],
+      "images": [
+        "/images/directions/poka/poka1.jpg"
+      ]
+    },
+    "sinpin": {
+      "definitions": [
+        "front side",
+        "frontward"
+      ],
+      "images": [
+        "/images/directions/sinpin/sinpin1.png"
+      ]
+    },
+    "soto": {
+      "definitions": [
+        "left side",
+        "leftward"
+      ],
+      "images": [
+        "/images/directions/soto/soto1.png"
+      ]
+    },
+    "wi": {
+      "definitions": [
+        "top side",
+        "upward"
+      ],
+      "images": [
+        "/images/directions/wi/wi1.png"
+      ]
+    }
+  },
+  "feelings": {
+    "apeja": {
+      "definitions": [
+        "ashamed"
+      ],
+      "images": []
+    },
+    "atali": {
+      "definitions": [
+        "respectful"
+      ],
+      "images": []
+    },
+    "enujo": {
+      "definitions": [
+        "bored"
+      ],
+      "images": []
+    },
+    "kanja": {
+      "definitions": [
+        "intoxicated"
+      ],
+      "images": []
+    },
+    "kuton": {
+      "definitions": [
+        "hurt",
+        "in pain"
+      ],
+      "images": []
+    },
+    "lakima": {
+      "definitions": [
+        "sad"
+      ],
+      "images": []
+    },
+    "liso": {
+      "definitions": [
+        "laughing"
+      ],
+      "images": []
+    },
+    "monsuta": {
+      "definitions": [
+        "scared"
+      ],
+      "images": []
+    },
+    "pasan": {
+      "definitions": [
+        "happy"
+      ],
+      "images": []
+    },
+    "santi": {
+      "definitions": [
+        "calm"
+      ],
+      "images": []
+    },
+    "tajan": {
+      "definitions": [
+        "angry"
+      ],
+      "images": []
+    },
+    "tijan": {
+      "definitions": [
+        "focused"
+      ],
+      "images": []
+    },
+    "tutu": {
+      "definitions": [
+        "excited"
+      ],
+      "images": []
+    },
+    "walaja": {
+      "definitions": [
+        "surprised"
+      ],
+      "images": []
+    }
+  },
+  "miscModifiers": {
+    "aja": {
+      "definitions": [
+        "alive"
+      ],
+      "images": []
+    },
+    "ajuta": {
+      "definitions": [
+        "helpful"
+      ],
+      "images": []
+    },
+    "akile": {
+      "definitions": [
+        "next",
+        "future"
+      ],
+      "images": []
+    },
+    "ali": {
+      "definitions": [
+        "all"
+      ],
+      "images": []
+    },
+    "ante": {
+      "definitions": [
+        "changed"
+      ],
+      "images": []
+    },
+    "awen": {
+      "definitions": [
+        "stationary"
+      ],
+      "images": []
+    },
+    "epi": {
+      "definitions": [
+        "heavy",
+        "fat"
+      ],
+      "images": []
+    },
+    "ike": {
+      "definitions": [
+        "bad"
+      ],
+      "images": []
+    },
+    "intisa": {
+      "definitions": [
+        "patient",
+        "waiting"
+      ],
+      "images": []
+    },
+    "iputu": {
+      "definitions": [
+        "current",
+        "present"
+      ],
+      "images": []
+    },
+    "isala": {
+      "definitions": [
+        "wrong"
+      ],
+      "images": []
+    },
+    "jaki": {
+      "definitions": [
+        "dirty",
+        "disgusting",
+        "yucky"
+      ],
+      "images": []
+    },
+    "jatila": {
+      "definitions": [
+        "difficult"
+      ],
+      "images": []
+    },
+    "kanpe": {
+      "definitions": [
+        "non locomotionally moving"
+      ],
+      "images": []
+    },
+    "kata": {
+      "definitions": [
+        "less (comparative)"
+      ],
+      "images": []
+    },
+    "kikolo": {
+      "definitions": [
+        "bitter"
+      ],
+      "images": []
+    },
+    "lamo": {
+      "definitions": [
+        "tall"
+      ],
+      "images": []
+    },
+    "lape": {
+      "definitions": [
+        "sleeping",
+        "dormant"
+      ],
+      "images": []
+    },
+    "lentu": {
+      "definitions": [
+        "smooth"
+      ],
+      "images": []
+    },
+    "lete": {
+      "definitions": [
+        "cold"
+      ],
+      "images": []
+    },
+    "lili": {
+      "definitions": [
+        "small"
+      ],
+      "images": []
+    },
+    "lon": {
+      "definitions": [
+        "real",
+        "existent"
+      ],
+      "images": []
+    },
+    "masala": {
+      "definitions": [
+        "spicy"
+      ],
+      "images": []
+    },
+    "mawon": {
+      "definitions": [
+        "light",
+        "thin"
+      ],
+      "images": []
+    },
+    "meli": {
+      "definitions": [
+        "female"
+      ],
+      "images": []
+    },
+    "mije": {
+      "definitions": [
+        "male"
+      ],
+      "images": []
+    },
+    "minsu": {
+      "definitions": [
+        "electric"
+      ],
+      "images": []
+    },
+    "moli": {
+      "definitions": [
+        "dead"
+      ],
+      "images": []
+    },
+    "mulu": {
+      "definitions": [
+        "full",
+        "complete"
+      ],
+      "images": []
+    },
+    "munkin": {
+      "definitions": [
+        "possible"
+      ],
+      "images": []
+    },
+    "musi": {
+      "definitions": [
+        "artistic"
+      ],
+      "images": []
+    },
+    "mute": {
+      "definitions": [
+        "many"
+      ],
+      "images": []
+    },
+    "nalama": {
+      "definitions": [
+        "soft"
+      ],
+      "images": []
+    },
+    "nasa": {
+      "definitions": [
+        "weird"
+      ],
+      "images": []
+    },
+    "no": {
+      "definitions": [
+        "not"
+      ],
+      "images": []
+    },
+    "num": {
+      "definitions": [
+        "salty"
+      ],
+      "images": []
+    },
+    "one": {
+      "definitions": [
+        "weak"
+      ],
+      "images": []
+    },
+    "open": {
+      "definitions": [
+        "start"
+      ],
+      "images": []
+    },
+    "pakala": {
+      "definitions": [
+        "broken",
+        "destroyed"
+      ],
+      "images": []
+    },
+    "pake": {
+      "definitions": [
+        "interrputed"
+      ],
+      "images": []
+    },
+    "patila": {
+      "definitions": [
+        "easy"
+      ],
+      "images": []
+    },
+    "pawita": {
+      "definitions": [
+        "pure"
+      ],
+      "images": []
+    },
+    "pilate": {
+      "definitions": [
+        "endangered",
+        "in danger"
+      ],
+      "images": []
+    },
+    "pin": {
+      "definitions": [
+        "as well",
+        "also"
+      ],
+      "images": []
+    },
+    "pini": {
+      "definitions": [
+        "end"
+      ],
+      "images": []
+    },
+    "pisile": {
+      "definitions": [
+        "previous",
+        "past"
+      ],
+      "images": []
+    },
+    "pona": {
+      "definitions": [
+        "good"
+      ],
+      "images": []
+    },
+    "posi": {
+      "definitions": [
+        "empty",
+        "unstarted"
+      ],
+      "images": []
+    },
+    "powe": {
+      "definitions": [
+        "fake"
+      ],
+      "images": []
+    },
+    "pulono": {
+      "definitions": [
+        "old"
+      ],
+      "images": []
+    },
+    "puson": {
+      "definitions": [
+        "follow",
+        "obey"
+      ],
+      "images": []
+    },
+    "sajo": {
+      "definitions": [
+        "ongoing"
+      ],
+      "images": []
+    },
+    "sama": {
+      "definitions": [
+        "same"
+      ],
+      "images": []
+    },
+    "sapi": {
+      "definitions": [
+        "clean"
+      ],
+      "images": []
+    },
+    "sata": {
+      "definitions": [
+        "more (comparative)"
+      ],
+      "images": []
+    },
+    "satalan": {
+      "definitions": [
+        "normal"
+      ],
+      "images": []
+    },
+    "seli": {
+      "definitions": [
+        "hot"
+      ],
+      "images": []
+    },
+    "sin": {
+      "definitions": [
+        "new",
+        "young"
+      ],
+      "images": []
+    },
+    "sipaja": {
+      "definitions": [
+        "losing"
+      ],
+      "images": []
+    },
+    "sulaki": {
+      "definitions": [
+        "safe"
+      ],
+      "images": []
+    },
+    "suli": {
+      "definitions": [
+        "big"
+      ],
+      "images": []
+    },
+    "suti": {
+      "definitions": [
+        "specific",
+        "detailed"
+      ],
+      "images": []
+    },
+    "suwi": {
+      "definitions": [
+        "sweet"
+      ],
+      "images": []
+    },
+    "ta": {
+      "definitions": [
+        "opposite",
+        "reflection"
+      ],
+      "images": []
+    },
+    "taso": {
+      "definitions": [
+        "alone"
+      ],
+      "images": []
+    },
+    "tawa": {
+      "definitions": [
+        "moving"
+      ],
+      "images": []
+    },
+    "tawonje": {
+      "definitions": [
+        "together",
+        "united",
+        "in solidarity"
+      ],
+      "images": []
+    },
+    "tepaka": {
+      "definitions": [
+        "tight",
+        "firm"
+      ],
+      "images": []
+    },
+    "tewe": {
+      "definitions": [
+        "connected",
+        "in contact"
+      ],
+      "images": []
+    },
+    "tile": {
+      "definitions": [
+        "slow"
+      ],
+      "images": []
+    },
+    "tini": {
+      "definitions": [
+        "short"
+      ],
+      "images": []
+    },
+    "tonsi": {
+      "definitions": [
+        "non binary"
+      ],
+      "images": []
+    },
+    "tote": {
+      "definitions": [
+        "few"
+      ],
+      "images": []
+    },
+    "tula": {
+      "definitions": [
+        "far"
+      ],
+      "images": []
+    },
+    "tuntan": {
+      "definitions": [
+        "correct"
+      ],
+      "images": []
+    },
+    "ulokan": {
+      "definitions": [
+        "hard",
+        "metallic"
+      ],
+      "images": []
+    },
+    "umami": {
+      "definitions": [
+        "umami",
+        "savory"
+      ],
+      "images": []
+    },
+    "unja": {
+      "definitions": [
+        "mixed"
+      ],
+      "images": []
+    },
+    "unpa": {
+      "definitions": [
+        "sexual",
+        "in state of intercourse"
+      ],
+      "images": []
+    },
+    "utala": {
+      "definitions": [
+        "violent",
+        "in state of violence",
+        "in turmoil"
+      ],
+      "images": []
+    },
+    "wawa": {
+      "definitions": [
+        "strong"
+      ],
+      "images": []
+    },
+    "wawasa": {
+      "definitions": [
+        "sour"
+      ],
+      "images": []
+    },
+    "weka": {
+      "definitions": [
+        "abandoned",
+        "removed"
+      ],
+      "images": []
+    },
+    "wiki": {
+      "definitions": [
+        "fast"
+      ],
+      "images": []
+    },
+    "wisaja": {
+      "definitions": [
+        "winning",
+        "victorious"
+      ],
+      "images": []
+    }
+  },
+  "miscNouns": {
+    "aka": {
+      "definitions": [
+        "sky"
+      ],
+      "images": []
+    },
+    "esun": {
+      "definitions": [
+        "market",
+        "store",
+        "shop",
+        "buy",
+        "exchange",
+        "trade"
+      ],
+      "images": []
+    },
+    "inpali": {
+      "definitions": [
+        "flower"
+      ],
+      "images": []
+    },
+    "into": {
+      "definitions": [
+        "place",
+        "area",
+        "outdoor area"
+      ],
+      "images": []
+    },
+    "jala": {
+      "definitions": [
+        "condition",
+        "state of being"
+      ],
+      "images": []
+    },
+    "jan": {
+      "definitions": [
+        "human",
+        "person"
+      ],
+      "images": []
+    },
+    "jesen": {
+      "definitions": [
+        "nature",
+        "natural",
+        "wild"
+      ],
+      "images": []
+    },
+    "jun": {
+      "definitions": [
+        "hair"
+      ],
+      "images": []
+    },
+    "kaje": {
+      "definitions": [
+        "tree",
+        "wood",
+        "wooden"
+      ],
+      "images": []
+    },
+    "kalite": {
+      "definitions": [
+        "quality",
+        "aspect",
+        "abstract facet"
+      ],
+      "images": []
+    },
+    "kanputa": {
+      "definitions": [
+        "computer"
+      ],
+      "images": []
+    },
+    "kanun": {
+      "definitions": [
+        "law",
+        "standard",
+        "standardize",
+        "legalize",
+        "rule"
+      ],
+      "images": []
+    },
+    "kasi": {
+      "definitions": [
+        "plant",
+        "plant-like"
+      ],
+      "images": []
+    },
+    "kili": {
+      "definitions": [
+        "fruit",
+        "vegetable"
+      ],
+      "images": []
+    },
+    "kiwen": {
+      "definitions": [
+        "stone",
+        "rock",
+        "rocky"
+      ],
+      "images": []
+    },
+    "ko": {
+      "definitions": [
+        "paste",
+        "goo",
+        "gooey"
+      ],
+      "images": []
+    },
+    "kon": {
+      "definitions": [
+        "air",
+        "wind",
+        "airy",
+        "windy"
+      ],
+      "images": []
+    },
+    "kule": {
+      "definitions": [
+        "color"
+      ],
+      "images": []
+    },
+    "kulupu": {
+      "definitions": [
+        "group",
+        "collection",
+        "group together",
+        "gather",
+        "collect"
+      ],
+      "images": []
+    },
+    "kumi": {
+      "definitions": [
+        "rubber",
+        "plastic",
+        "stretchy?",
+        "pliable?"
+      ],
+      "images": []
+    },
+    "kuwan": {
+      "definitions": [
+        "light (visual)",
+        "bright"
+      ],
+      "images": []
+    },
+    "leko": {
+      "definitions": [
+        "solid block",
+        "supporting/dividing structure",
+        "obstruction/barrier?"
+      ],
+      "images": []
+    },
+    "linja": {
+      "definitions": [
+        "line",
+        "linear",
+        "long",
+        "stretched out lengthwise",
+        "lined up",
+        "to line up",
+        "to strech out"
+      ],
+      "images": []
+    },
+    "lipu": {
+      "definitions": [
+        "flat object",
+        "document",
+        "book",
+        "canvas",
+        "newspaper",
+        "written material"
+      ],
+      "images": []
+    },
+    "lupa": {
+      "definitions": [
+        "hole",
+        "door",
+        "opening",
+        "gap",
+        "open",
+        "make a hole",
+        "puncture"
+      ],
+      "images": []
+    },
+    "ma": {
+      "definitions": [
+        "land",
+        "earth",
+        "region",
+        "earthen"
+      ],
+      "images": []
+    },
+    "mama": {
+      "definitions": [
+        "parent"
+      ],
+      "images": []
+    },
+    "mani": {
+      "definitions": [
+        "money",
+        "monetary"
+      ],
+      "images": []
+    },
+    "mi": {
+      "definitions": [
+        "me"
+      ],
+      "images": []
+    },
+    "misali": {
+      "definitions": [
+        "example",
+        "version"
+      ],
+      "images": []
+    },
+    "moto": {
+      "definitions": [
+        "fire",
+        "fiery",
+        "plasma"
+      ],
+      "images": []
+    },
+    "mun": {
+      "definitions": [
+        "moon",
+        "month"
+      ],
+      "images": []
+    },
+    "na": {
+      "definitions": [
+        "that"
+      ],
+      "images": []
+    },
+    "naka": {
+      "definitions": [
+        "city",
+        "society",
+        "developed land",
+        "industrialized",
+        "man-made?"
+      ],
+      "images": []
+    },
+    "nanpa": {
+      "definitions": [
+        "number"
+      ],
+      "images": []
+    },
+    "nasin": {
+      "definitions": [
+        "path",
+        "direction"
+      ],
+      "images": []
+    },
+    "nata": {
+      "definitions": [
+        "relationship"
+      ],
+      "images": []
+    },
+    "ni": {
+      "definitions": [
+        "this"
+      ],
+      "images": []
+    },
+    "nimi": {
+      "definitions": [
+        "name",
+        "word"
+      ],
+      "images": []
+    },
+    "oliwa": {
+      "definitions": [
+        "oil",
+        "oily"
+      ],
+      "images": []
+    },
+    "on": {
+      "definitions": [
+        "he",
+        "she",
+        "they",
+        "it"
+      ],
+      "images": []
+    },
+    "osa": {
+      "definitions": [
+        "part",
+        "section",
+        "hour"
+      ],
+      "images": []
+    },
+    "palisa": {
+      "definitions": [
+        "stick"
+      ],
+      "images": []
+    },
+    "pan": {
+      "definitions": [
+        "bread",
+        "grain"
+      ],
+      "images": []
+    },
+    "peman": {
+      "definitions": [
+        "deal",
+        "agreement",
+        "contract",
+        "pact"
+      ],
+      "images": []
+    },
+    "penke": {
+      "definitions": [
+        "event",
+        "instance",
+        "moment",
+        "second"
+      ],
+      "images": []
+    },
+    "popoto": {
+      "definitions": [
+        "mountain",
+        "bump"
+      ],
+      "images": []
+    },
+    "pume": {
+      "definitions": [
+        "smoke",
+        "cloud"
+      ],
+      "images": []
+    },
+    "putala": {
+      "definitions": [
+        "child"
+      ],
+      "images": []
+    },
+    "sa": {
+      "definitions": [
+        "thing"
+      ],
+      "images": []
+    },
+    "sala": {
+      "definitions": [
+        "atom",
+        "smallest possible object"
+      ],
+      "images": []
+    },
+    "sewi": {
+      "definitions": [
+        "religion"
+      ],
+      "images": []
+    },
+    "si": {
+      "definitions": [
+        "you"
+      ],
+      "images": []
+    },
+    "sike": {
+      "definitions": [
+        "circle"
+      ],
+      "images": []
+    },
+    "soko": {
+      "definitions": [
+        "fungus",
+        "mushroom",
+        "fungal"
+      ],
+      "images": []
+    },
+    "suno": {
+      "definitions": [
+        "sun",
+        "day"
+      ],
+      "images": []
+    },
+    "supa": {
+      "definitions": [
+        "table",
+        "bed",
+        "horizontal surface"
+      ],
+      "images": []
+    },
+    "taka": {
+      "definitions": [
+        "wave",
+        "repetition",
+        "ripple"
+      ],
+      "images": []
+    },
+    "talika": {
+      "definitions": [
+        "table",
+        "list"
+      ],
+      "images": []
+    },
+    "tapa": {
+      "definitions": [
+        "container",
+        "box",
+        "bowl",
+        "cup",
+        "bag",
+        "purse",
+        "to package",
+        "to fill (a container)"
+      ],
+      "images": []
+    },
+    "telo": {
+      "definitions": [
+        "water",
+        "liquid",
+        "watery",
+        "wet"
+      ],
+      "images": []
+    },
+    "tenpo": {
+      "definitions": [
+        "time",
+        "duration",
+        "minute"
+      ],
+      "images": []
+    },
+    "tisi": {
+      "definitions": [
+        "system",
+        "method"
+      ],
+      "images": []
+    },
+    "tiwa": {
+      "definitions": [
+        "wall",
+        "vertical surface"
+      ],
+      "images": []
+    },
+    "tiwata": {
+      "definitions": [
+        "glass",
+        "glassy"
+      ],
+      "images": []
+    },
+    "tolu": {
+      "definitions": [
+        "cup",
+        "tube"
+      ],
+      "images": []
+    },
+    "tomo": {
+      "definitions": [
+        "house",
+        "building",
+        "room",
+        "enclosed structure",
+        "indoor area"
+      ],
+      "images": []
+    },
+    "walala": {
+      "definitions": [
+        "sibling"
+      ],
+      "images": []
+    },
+    "wetu": {
+      "definitions": [
+        "star",
+        "year"
+      ],
+      "images": []
+    },
+    "woka": {
+      "definitions": [
+        "powder"
+      ],
+      "images": []
+    }
+  },
+  "miscVerbs": {
+    "alasa": {
+      "definitions": [
+        "look for",
+        "hunt",
+        "find"
+      ],
+      "images": []
+    },
+    "ato": {
+      "definitions": [
+        "drive"
+      ],
+      "images": []
+    },
+    "ilo": {
+      "definitions": [
+        "use"
+      ],
+      "images": []
+    },
+    "iman": {
+      "definitions": [
+        "trust",
+        "believe"
+      ],
+      "images": []
+    },
+    "inkatan": {
+      "definitions": [
+        "remember"
+      ],
+      "images": []
+    },
+    "jo": {
+      "definitions": [
+        "have",
+        "possess",
+        "own"
+      ],
+      "images": []
+    },
+    "kake": {
+      "definitions": [
+        "result in"
+      ],
+      "images": []
+    },
+    "kalama": {
+      "definitions": [
+        "produce sound"
+      ],
+      "images": []
+    },
+    "kama": {
+      "definitions": [
+        "become"
+      ],
+      "images": []
+    },
+    "kanti": {
+      "definitions": [
+        "sing",
+        "play (instrument)"
+      ],
+      "images": []
+    },
+    "kela": {
+      "definitions": [
+        "play (game)"
+      ],
+      "images": []
+    },
+    "ken": {
+      "definitions": [
+        "be able to"
+      ],
+      "images": []
+    },
+    "kipisi": {
+      "definitions": [
+        "cut",
+        "divide"
+      ],
+      "images": []
+    },
+    "kisa": {
+      "definitions": [
+        "narrate"
+      ],
+      "images": []
+    },
+    "kokan": {
+      "definitions": [
+        "try"
+      ],
+      "images": []
+    },
+    "konta": {
+      "definitions": [
+        "understand",
+        "learn"
+      ],
+      "images": []
+    },
+    "lajo": {
+      "definitions": [
+        "broadcast",
+        "announce"
+      ],
+      "images": []
+    },
+    "lanpan": {
+      "definitions": [
+        "take",
+        "receive"
+      ],
+      "images": []
+    },
+    "len": {
+      "definitions": [
+        "wear",
+        "be covered with"
+      ],
+      "images": []
+    },
+    "lika": {
+      "definitions": [
+        "write",
+        "compose"
+      ],
+      "images": []
+    },
+    "lukin": {
+      "definitions": [
+        "see"
+      ],
+      "images": []
+    },
+    "moku": {
+      "definitions": [
+        "eat",
+        "consume"
+      ],
+      "images": []
+    },
+    "nena": {
+      "definitions": [
+        "smell"
+      ],
+      "images": []
+    },
+    "oke": {
+      "definitions": [
+        "accept"
+      ],
+      "images": []
+    },
+    "pali": {
+      "definitions": [
+        "make",
+        "do"
+      ],
+      "images": []
+    },
+    "pana": {
+      "definitions": [
+        "give"
+      ],
+      "images": []
+    },
+    "papon": {
+      "definitions": [
+        "emit",
+        "excrete"
+      ],
+      "images": []
+    },
+    "pati": {
+      "definitions": [
+        "celebrate"
+      ],
+      "images": []
+    },
+    "pesoni": {
+      "definitions": [
+        "need"
+      ],
+      "images": []
+    },
+    "pilin": {
+      "definitions": [
+        "feel"
+      ],
+      "images": []
+    },
+    "saku": {
+      "definitions": [
+        "choose"
+      ],
+      "images": []
+    },
+    "sankan": {
+      "definitions": [
+        "signify",
+        "mean"
+      ],
+      "images": []
+    },
+    "sawapu": {
+      "definitions": [
+        "answer",
+        "respond"
+      ],
+      "images": []
+    },
+    "sitelen": {
+      "definitions": [
+        "draw",
+        "illustrate",
+        "graphically represent"
+      ],
+      "images": []
+    },
+    "siten": {
+      "definitions": [
+        "sit"
+      ],
+      "images": []
+    },
+    "solu": {
+      "definitions": [
+        "ask"
+      ],
+      "images": []
+    },
+    "sona": {
+      "definitions": [
+        "know"
+      ],
+      "images": []
+    },
+    "tana": {
+      "definitions": [
+        "think"
+      ],
+      "images": []
+    },
+    "tinto": {
+      "definitions": [
+        "listen",
+        "hear"
+      ],
+      "images": []
+    },
+    "toki": {
+      "definitions": [
+        "say",
+        "communicate"
+      ],
+      "images": []
+    },
+    "ukumu": {
+      "definitions": [
+        "order",
+        "demand",
+        "mandate"
+      ],
+      "images": []
+    },
+    "wile": {
+      "definitions": [
+        "want"
+      ],
+      "images": []
+    },
+    "wolin": {
+      "definitions": [
+        "love"
+      ],
+      "images": []
+    }
+  },
+  "numbers": {
+    "kenta": {
+      "definitions": [
+        "100"
+      ],
+      "images": []
+    },
+    "kika": {
+      "definitions": [
+        "1,000,000,000"
+      ],
+      "images": []
+    },
+    "kilo": {
+      "definitions": [
+        "1000"
+      ],
+      "images": []
+    },
+    "lima": {
+      "definitions": [
+        "5"
+      ],
+      "images": []
+    },
+    "meka": {
+      "definitions": [
+        "1,000,000"
+      ],
+      "images": []
+    },
+    "newen": {
+      "definitions": [
+        "9"
+      ],
+      "images": []
+    },
+    "oto": {
+      "definitions": [
+        "8"
+      ],
+      "images": []
+    },
+    "po": {
+      "definitions": [
+        "4"
+      ],
+      "images": []
+    },
+    "san": {
+      "definitions": [
+        "3"
+      ],
+      "images": []
+    },
+    "senti": {
+      "definitions": [
+        "percent",
+        "1/100"
+      ],
+      "images": []
+    },
+    "sepen": {
+      "definitions": [
+        "7"
+      ],
+      "images": []
+    },
+    "sesi": {
+      "definitions": [
+        "6"
+      ],
+      "images": []
+    },
+    "ten": {
+      "definitions": [
+        "10"
+      ],
+      "images": []
+    },
+    "tu": {
+      "definitions": [
+        "2"
+      ],
+      "images": []
+    },
+    "wan": {
+      "definitions": [
+        "1"
+      ],
+      "images": []
+    }
+  },
+  "particles": {
+    "a": {
+      "definitions": [
+        "ooh!",
+        "interjection of agreement",
+        "interjection of interest"
+      ],
+      "images": []
+    },
+    "anu": {
+      "definitions": [
+        "or"
+      ],
+      "images": []
+    },
+    "en": {
+      "definitions": [
+        "and"
+      ],
+      "images": []
+    },
+    "ita": {
+      "definitions": [
+        "poststated context marker"
+      ],
+      "images": []
+    },
+    "la": {
+      "definitions": [
+        "prestated context marker"
+      ],
+      "images": []
+    },
+    "lekin": {
+      "definitions": [
+        "but",
+        "howerever"
+      ],
+      "images": []
+    },
+    "li": {
+      "definitions": [
+        "predicate marker"
+      ],
+      "images": []
+    },
+    "o": {
+      "definitions": [
+        "command marker",
+        "wishful irrealis"
+      ],
+      "images": []
+    },
+    "peko": {
+      "definitions": [
+        "hello",
+        "please",
+        "sorry",
+        "thank you"
+      ],
+      "images": []
+    },
+    "seme": {
+      "definitions": [
+        "interrogative placeholder"
+      ],
+      "images": []
+    },
+    "te": {
+      "definitions": [
+        "noun clause marker",
+        "relative clause marker"
+      ],
+      "images": []
+    },
+    "wa": {
+      "definitions": [
+        "to cause",
+        "be the reason of",
+        "cause",
+        "causative modifier"
+      ],
+      "images": []
+    }
+  },
+  "prepositions": {
+    "an": {
+      "definitions": [
+        "in",
+        "at",
+        "on",
+        "(locative case)"
+      ],
+      "images": []
+    },
+    "e": {
+      "definitions": [
+        "direct object",
+        "(accusative case)"
+      ],
+      "images": []
+    },
+    "kan": {
+      "definitions": [
+        "along with",
+        "with",
+        "(comitative case)"
+      ],
+      "images": []
+    },
+    "ki": {
+      "definitions": [
+        "towards",
+        "to",
+        "in order to",
+        "(dative/allative case)"
+      ],
+      "images": []
+    },
+    "nen": {
+      "definitions": [
+        "because of",
+        "caused by",
+        "(causal case)"
+      ],
+      "images": []
+    },
+    "pelu": {
+      "definitions": [
+        "using",
+        "(instrumental case)"
+      ],
+      "images": []
+    },
+    "pi": {
+      "definitions": [
+        "of",
+        "(genitive/relational case)"
+      ],
+      "images": []
+    },
+    "su": {
+      "definitions": [
+        "than",
+        "as",
+        "like",
+        "(comparative)"
+      ],
+      "images": []
+    },
+    "tan": {
+      "definitions": [
+        "from",
+        "(ablative case)"
+      ],
+      "images": []
+    }
+  }
+}

@@ -1,0 +1,5 @@
+house
+building
+room
+enclosed structure
+indoor area

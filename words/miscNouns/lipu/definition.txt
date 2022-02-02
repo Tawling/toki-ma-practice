@@ -1,0 +1,6 @@
+flat object
+document
+book
+canvas
+newspaper
+written material

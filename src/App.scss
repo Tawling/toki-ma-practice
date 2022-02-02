@@ -1,0 +1,11 @@
+.App {
+    min-width: 500px;
+    width: 60%;
+    margin: auto;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

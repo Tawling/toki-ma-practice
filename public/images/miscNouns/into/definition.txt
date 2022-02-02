@@ -1,0 +1,3 @@
+place
+area
+outdoor area

@@ -1,0 +1,6 @@
+market
+store
+shop
+buy
+exchange
+trade
