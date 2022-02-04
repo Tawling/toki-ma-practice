@@ -1,7 +1,7 @@
 import { useState, createContext } from 'react';
-import AppSettings, { Settings } from './components/containers/AppSettings';
+import AppSettings, { Settings } from './components/AppSettings';
 import './App.scss';
-import GameArea from './components/containers/GameArea';
+import GameArea from './components/GameArea';
 import { Button } from 'reactstrap';
 import EngText from './components/common/EngText';
 import TokiText from './components/common/TokiText';

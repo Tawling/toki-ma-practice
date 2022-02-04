@@ -1,9 +1,9 @@
-import ToggleSwitch from '../common/ToggleSwitch';
+import ToggleSwitch from './common/ToggleSwitch';
 import './AppSettings.scss';
 import { Collapse } from 'reactstrap';
 import { useState } from 'react';
-import EngText from '../common/EngText';
-import TokiText from '../common/TokiText';
+import EngText from './common/EngText';
+import TokiText from './common/TokiText';
 
 export interface Settings {
     [key: string]: boolean;

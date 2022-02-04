@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import { Button } from 'reactstrap';
-import { useRefState } from '../../utils/useRefState';
-import { buildWordList, fetchWordList, pickWord, ProgressMap, WordDef } from '../../words';
-import FlashCard from '../FlashCard';
+import { useRefLocalStorage, useRefState } from '../utils/use';
+import { buildWordList, fetchWordList, pickWord, ProgressMap, WordDef } from '../words';
+import FlashCard from './FlashCard';
 import { Settings } from './AppSettings';
 
 import './GameArea.scss';
@@ -13,21 +13,28 @@ interface Props {
 }
 
 const GameArea = ({ settings }: Props) => {
-    const [_wordCount, setWordCount, removeWordCount] = useLocalStorage('wordCount', 0);
+    const [_wordCount, wordCountRef, setWordCount, removeWordCount] = useRefLocalStorage('wordCount', 0);
     const wordCount = _wordCount ?? 0;
     const [curWord, curWordRef, setCurWord] = useRefState(null as WordDef | null);
     const [recentWords, recentWordsRef, setRecentWords] = useRefState([] as string[]);
     const [fullWordList, fullWordListRef, setFullWordList] = useRefState([] as WordDef[]);
     const [activeWordList, activeWordListRef, setActiveWordList] = useRefState([] as WordDef[]);
     const [showAnswer, showAnswerRef, setShowAnswer] = useRefState(false);
-    const [progressMap, setProgressMap, removeProgressMap] = useLocalStorage('progress', {} as ProgressMap);
+    const [progressMap, progressMapRef, setProgressMap, removeProgressMap] = useRefLocalStorage(
+        'progress',
+        {} as ProgressMap
+    );
 
     const pickNewWord = () => {
-        const nextWord = pickWord(activeWordList, recentWords, settings, progressMap || {});
+        const nextWord = pickWord(
+            activeWordListRef.current,
+            recentWordsRef.current,
+            settings,
+            progressMapRef.current ?? {}
+        );
         console.log(nextWord);
         if (!!nextWord) {
             setRecentWords([...recentWords, nextWord.word]);
-            console.log('a');
             setCurWord(nextWord);
             setShowAnswer(false);
             setWordCount(wordCount + 1);
@@ -35,25 +42,25 @@ const GameArea = ({ settings }: Props) => {
     };
 
     const markCorrect = (word: string) => {
-        const oldProgress = progressMap?.[word];
+        const oldProgress = progressMapRef.current?.[word];
         const newProgress = {
             count: (oldProgress?.count ?? 0) + 1,
             correct: (oldProgress?.correct ?? 0) + 1,
             progress: ((oldProgress?.correct ?? 0) + 1) / ((oldProgress?.count ?? 0) + 1),
             lastInstance: wordCount,
         };
-        setProgressMap({ ...progressMap, [word]: newProgress });
+        setProgressMap({ ...progressMapRef.current, [word]: newProgress });
     };
 
     const markWrong = (word: string) => {
-        const oldProgress = progressMap?.[word];
+        const oldProgress = progressMapRef.current?.[word];
         const newProgress = {
             count: (oldProgress?.count ?? 0) + 1,
             correct: oldProgress?.correct ?? 0,
             progress: (oldProgress?.correct ?? 0) / ((oldProgress?.count ?? 0) + 1),
             lastInstance: wordCount,
         };
-        setProgressMap({ ...progressMap, [word]: newProgress });
+        setProgressMap({ ...progressMapRef.current, [word]: newProgress });
     };
 
     // Fetch word list on first load
@@ -77,11 +84,10 @@ const GameArea = ({ settings }: Props) => {
     }, [fullWordList, activeWordList]);
 
     const handleSkipBtn = () => {
-        console.log('skip');
         pickNewWord();
     };
     const handleShowBtn = () => {
-        if (showAnswer) {
+        if (showAnswerRef.current) {
             // go to next?
             setShowAnswer(false);
         } else {
@@ -89,11 +95,11 @@ const GameArea = ({ settings }: Props) => {
         }
     };
     const handleCorrectBtn = () => {
-        if (curWord) markCorrect(curWord?.word);
+        if (curWordRef.current) markCorrect(curWordRef.current.word);
         pickNewWord();
     };
     const handleWrongBtn = () => {
-        if (curWord) markWrong(curWord.word);
+        if (curWordRef.current) markWrong(curWordRef.current.word);
         pickNewWord();
     };
 
@@ -101,19 +107,19 @@ const GameArea = ({ settings }: Props) => {
         console.log(event.key, event.code);
         switch (event.key) {
             case 'ArrowRight':
-                //event.preventDefault();
+                event.preventDefault();
                 handleShowBtn();
                 break;
             case 'ArrowLeft':
-                //event.preventDefault();
+                event.preventDefault();
                 handleSkipBtn();
                 break;
             case 'ArrowUp':
-                //event.preventDefault();
+                event.preventDefault();
                 handleCorrectBtn();
                 break;
             case 'ArrowDown':
-                //event.preventDefault();
+                event.preventDefault();
                 handleWrongBtn();
                 break;
         }
@@ -121,24 +127,23 @@ const GameArea = ({ settings }: Props) => {
 
     // Listen for key inputs
     useEffect(() => {
-        console.log('rebinding');
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [activeWordList, recentWords, settings, progressMap]);
+    }, []);
 
     return (
         <>
-            <div className='game-buttons'>
+            <div className="game-buttons">
                 <Button onClick={handleSkipBtn}>Skip Word</Button>
                 <Button onClick={handleShowBtn}>Show Answer</Button>
                 <Button onClick={handleCorrectBtn}>Correct</Button>
                 <Button onClick={handleWrongBtn}>Wrong</Button>
             </div>
-            <div className='game-area'>
+            <div className="game-area">
                 <FlashCard isAnswer={false}>{curWord?.word}</FlashCard>
             </div>
             {showAnswer ? (
-                <div className='game-area'>
+                <div className="game-area">
                     <FlashCard isAnswer={true}>{curWord?.definitions.join(', ')}</FlashCard>
                     {curWord?.images.map((url) => (
                         <FlashCard key={url} isAnswer={true}>
