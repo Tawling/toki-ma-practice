@@ -23,19 +23,19 @@ function App() {
         particles: true,
         numbers: true,
         showEnglishAnswers: true,
-        askWithDefinitions: true,
+        reverseCards: true,
     } as Settings);
 
     return (
         <LanguageContext.Provider value={language}>
-            <div className='App'>
-                <header className='App-header'>
+            <div className="App">
+                <header className="App-header">
                     <h1>
                         <EngText>Toki Ma Practice Flashcards</EngText>
                         <TokiText>pali sona pi toki ma</TokiText>
                     </h1>
-                    <div className='language-select'>
-                        <Button type='button' onClick={() => setLanguage(language === 'eng' ? 'toki' : 'eng')}>
+                    <div className="language-select">
+                        <Button type="button" onClick={() => setLanguage(language === 'eng' ? 'toki' : 'eng')}>
                             Switch Language
                         </Button>
                     </div>
@@ -44,7 +44,7 @@ function App() {
                     settings={settings}
                     updateSettings={(settingName, value) => setSettings({ ...settings, [settingName]: value })}
                 />
-                <GameArea settings={settings}/>
+                <GameArea settings={settings} />
             </div>
         </LanguageContext.Provider>
     );

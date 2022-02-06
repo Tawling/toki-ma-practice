@@ -28,15 +28,20 @@ const ToggleSwitch = ({
         <>
             <label className={`toggle-switch ${className}`}>
                 <span className={`${size} switch-wrapper`}>
-                    <input type='checkbox' checked={checked} disabled={disabled} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e?.target?.checked ?? false)} />
+                    <input
+                        type="checkbox"
+                        checked={checked}
+                        disabled={disabled}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e?.target?.checked ?? false)}
+                    />
                     <span className={`${displayStyle} switch`}>
-                        <span className='switch-handle' />
+                        <span className="switch-handle" />
                     </span>
                 </span>
                 <span className={`switch-label ${checked ? 'checked' : ''}`}>{children}</span>
             </label>
         </>
     );
-}
+};
 
 export default ToggleSwitch;

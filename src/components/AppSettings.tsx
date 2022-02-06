@@ -19,7 +19,7 @@ export interface Settings {
     particles: boolean;
     numbers: boolean;
     showEnglishAnswers: boolean;
-    askWithDefinitions: boolean;
+    reverseCards: boolean;
 }
 
 interface Props {
@@ -31,15 +31,15 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
     const [collapseWords, setCollapseWords] = useState(false);
     const [collapseSettings, setCollapseSettings] = useState(false);
     return (
-        <div className='settings-container'>
-            <span className='setting-group-heading' onClick={() => setCollapseWords(!collapseWords)}>
+        <div className="settings-container">
+            <span className="setting-group-heading" onClick={() => setCollapseWords(!collapseWords)}>
                 <EngText>Words</EngText>
                 <TokiText>nimi</TokiText>
-                <span>{collapseWords ? ' ⮞' : ' ⮟' }</span>
+                <span>{collapseWords ? ' ⮞' : ' ⮟'}</span>
             </span>
             <Collapse isOpen={!collapseWords}>
-                <div className='setting-group'>
-                    <div className='setting-subgroup'>
+                <div className="setting-group">
+                    <div className="setting-subgroup">
                         <ToggleSwitch
                             checked={settings.directions}
                             onChange={(value: boolean) => updateSettings('directions', value)}
@@ -69,7 +69,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <TokiText>nimi ante pi ijo</TokiText>
                         </ToggleSwitch>
                     </div>
-                    <div className='setting-subgroup'>
+                    <div className="setting-subgroup">
                         <ToggleSwitch
                             checked={settings.miscVerbs}
                             onChange={(value: boolean) => updateSettings('miscVerbs', value)}
@@ -99,7 +99,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <TokiText>nimi ante pi ante e konta</TokiText>
                         </ToggleSwitch>
                     </div>
-                    <div className='setting-subgroup'>
+                    <div className="setting-subgroup">
                         <ToggleSwitch
                             checked={settings.prepositions}
                             onChange={(value: boolean) => updateSettings('prepositions', value)}
@@ -115,7 +115,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <TokiText>nimi pi tewe e osa</TokiText>
                         </ToggleSwitch>
                     </div>
-                    <div className='setting-subgroup'>
+                    <div className="setting-subgroup">
                         <ToggleSwitch
                             checked={settings.numbers}
                             onChange={(value: boolean) => updateSettings('numbers', value)}
@@ -126,14 +126,14 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                     </div>
                 </div>
             </Collapse>
-            <span className='setting-group-heading' onClick={() => setCollapseSettings(!collapseSettings)}>
+            <span className="setting-group-heading" onClick={() => setCollapseSettings(!collapseSettings)}>
                 <EngText>Settings</EngText>
                 <TokiText>saku</TokiText>
-                <span>{collapseSettings ? ' ⮞' : ' ⮟' }</span>
+                <span>{collapseSettings ? ' ⮞' : ' ⮟'}</span>
             </span>
             <Collapse isOpen={!collapseSettings}>
-                <div className='setting-group'>
-                    <div className='setting-subgroup'>
+                <div className="setting-group">
+                    <div className="setting-subgroup">
                         <ToggleSwitch
                             checked={settings.showEnglishAnswers}
                             onChange={(value: boolean) => updateSettings('showEnglishAnswers', value)}
@@ -142,11 +142,11 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <TokiText>li lukin wa e toki Inli</TokiText>
                         </ToggleSwitch>
                         <ToggleSwitch
-                            checked={settings.askWithDefinitions}
-                            onChange={(value: boolean) => updateSettings('askWithDefinitions', value)}
+                            checked={settings.reverseCards}
+                            onChange={(value: boolean) => updateSettings('reverseCards', value)}
                         >
                             <EngText>Reverse Flashcards (answer in toki ma)</EngText>
-                            <TokiText>li solu pelu e sitelen</TokiText>
+                            <TokiText>li ta e lipu (li sawapu pelu toki ma)</TokiText>
                         </ToggleSwitch>
                     </div>
                 </div>

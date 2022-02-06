@@ -14,3 +14,26 @@
     margin: 10px 0;
     margin-left: 20px;
 }
+
+.key-icon {
+    display: inline-block;
+    height: 2em;
+    margin-left: 10px;
+    filter: invert(100%) sepia(0%) saturate(7491%) hue-rotate(96deg) brightness(106%) contrast(101%);
+}
+
+.correct-btn {
+    transition: background-color 0.75s ease;
+    &.flash {
+        background-color: #00c800;
+        transition: background-color 0s;
+    }
+}
+
+.wrong-btn {
+    transition: background-color 0.75s ease;
+    &.flash {
+        background-color: red;
+        transition: background-color 0s;
+    }
+}

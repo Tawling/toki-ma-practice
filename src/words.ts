@@ -1,4 +1,4 @@
-import { Settings } from './components/containers/AppSettings';
+import { Settings } from './components/AppSettings';
 
 export interface WordDef {
     word: string;
@@ -19,6 +19,8 @@ interface WordListResponse {
 export interface WordProgress {
     count: number;
     correct: number;
+    recent: boolean[];
+    recentCorrect: number;
     progress: number;
     lastInstance: number;
 }
@@ -37,8 +39,8 @@ export const fetchWordList = async () => {
                 category,
                 definitions: response[category][word].definitions,
                 images: response[category][word].images,
-            })
-        )
+            }),
+        ),
     );
     return words;
 };
@@ -46,12 +48,13 @@ export const fetchWordList = async () => {
 export const buildWordList = (settings: Settings, wordList: WordDef[]) =>
     wordList.filter((word) => settings[word.category]);
 
-export const pickWord = (
-    wordList: WordDef[],
-    recentWords: string[],
-    settings: Settings,
-    progressMap: ProgressMap
-): WordDef | null => {
-    // TODO: take recent words and settings into account
-    return wordList.length > 0 ? wordList[Math.floor(Math.random() * wordList.length)] : null;
-};
+    const weightedRandom = <T>(items: T[], weights: number[]) => {
+        let i;
+        for (i = 0; i < weights.length; i++) weights[i] += weights[i - 1] || 0;
+    
+        const random = Math.random() * weights[weights.length - 1];
+    
+        for (i = 0; i < weights.length; i++) if (weights[i] > random) break;
+    
+        return items[i];
+    };

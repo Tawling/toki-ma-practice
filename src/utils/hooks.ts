@@ -25,8 +25,8 @@ export const useRefLocalStorage = <T>(
               serializer: (value: T) => string;
               deserializer: (value: string) => T;
           }
-        | undefined
-): [T | undefined, React.MutableRefObject<T|undefined>, React.Dispatch<T>, () => void] => {
+        | undefined,
+): [T | undefined, React.MutableRefObject<T | undefined>, React.Dispatch<T>, () => void] => {
     const [value, setValue, removeValue] = useLocalStorage<T>(key, initialValue, options);
     const ref = useRef<T | undefined>(value);
     const setRefValue = (value: T) => {
