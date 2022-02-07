@@ -30,7 +30,7 @@
         "hooved animal"
       ],
       "images": [
-        "/images/animals/kita/kita1.jpg"
+        "./images/animals/kita/kita1.jpg"
       ]
     },
     "meja": {
@@ -54,7 +54,7 @@
         "bovine animal"
       ],
       "images": [
-        "/images/animals/mu/mu1.jpeg"
+        "./images/animals/mu/mu1.jpeg"
       ]
     },
     "neje": {
@@ -64,7 +64,7 @@
         "equine animal"
       ],
       "images": [
-        "/images/animals/neje/neje1.jpg"
+        "./images/animals/neje/neje1.jpg"
       ]
     },
     "pawo": {
@@ -74,8 +74,8 @@
         "canine animal"
       ],
       "images": [
-        "/images/animals/pawo/pawo1.jpg",
-        "/images/animals/pawo/pawo2.jpg"
+        "./images/animals/pawo/pawo1.jpg",
+        "./images/animals/pawo/pawo2.jpg"
       ]
     },
     "pipi": {
@@ -227,7 +227,7 @@
         "downward"
       ],
       "images": [
-        "/images/directions/anpa/anpa1.png"
+        "./images/directions/anpa/anpa1.png"
       ]
     },
     "insa": {
@@ -236,8 +236,8 @@
         "inside-ward"
       ],
       "images": [
-        "/images/directions/insa/insa1.png",
-        "/images/directions/insa/insa2.png"
+        "./images/directions/insa/insa1.png",
+        "./images/directions/insa/insa2.png"
       ]
     },
     "jupa": {
@@ -246,7 +246,7 @@
         "rightward"
       ],
       "images": [
-        "/images/directions/jupa/jupa1.png"
+        "./images/directions/jupa/jupa1.png"
       ]
     },
     "kona": {
@@ -255,16 +255,18 @@
         "corner-ward"
       ],
       "images": [
-        "/images/directions/kona/kona1.png"
+        "./images/directions/kona/kona1.png"
       ]
     },
     "matija": {
       "definitions": [
         "middle",
-        "middle-ward"
+        "middle-ward",
+        "moderate",
+        "between two extremes"
       ],
       "images": [
-        "/images/directions/matija/matija1.png"
+        "./images/directions/matija/matija1.png"
       ]
     },
     "monsi": {
@@ -273,8 +275,8 @@
         "backward"
       ],
       "images": [
-        "/images/directions/monsi/monsi1.png",
-        "/images/directions/monsi/monsi2.jpg"
+        "./images/directions/monsi/monsi1.png",
+        "./images/directions/monsi/monsi2.jpg"
       ]
     },
     "nesi": {
@@ -283,8 +285,8 @@
         "outside-ward"
       ],
       "images": [
-        "/images/directions/nesi/nesi1.png",
-        "/images/directions/nesi/nesi2.png"
+        "./images/directions/nesi/nesi1.png",
+        "./images/directions/nesi/nesi2.png"
       ]
     },
     "poka": {
@@ -292,7 +294,7 @@
         "nearby"
       ],
       "images": [
-        "/images/directions/poka/poka1.jpg"
+        "./images/directions/poka/poka1.jpg"
       ]
     },
     "sinpin": {
@@ -301,7 +303,7 @@
         "frontward"
       ],
       "images": [
-        "/images/directions/sinpin/sinpin1.png"
+        "./images/directions/sinpin/sinpin1.png"
       ]
     },
     "soto": {
@@ -310,7 +312,7 @@
         "leftward"
       ],
       "images": [
-        "/images/directions/soto/soto1.png"
+        "./images/directions/soto/soto1.png"
       ]
     },
     "wi": {
@@ -319,7 +321,7 @@
         "upward"
       ],
       "images": [
-        "/images/directions/wi/wi1.png"
+        "./images/directions/wi/wi1.png"
       ]
     }
   },

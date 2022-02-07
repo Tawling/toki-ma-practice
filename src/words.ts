@@ -30,7 +30,7 @@ export interface ProgressMap {
 }
 
 export const fetchWordList = async () => {
-    const response = (await (await fetch('/words.json')).json()) as WordListResponse;
+    const response = (await (await fetch('./words.json')).json()) as WordListResponse;
     const words: WordDef[] = [];
     Object.keys(response).forEach((category) =>
         Object.keys(response[category]).forEach((word) =>
@@ -47,14 +47,3 @@ export const fetchWordList = async () => {
 
 export const buildWordList = (settings: Settings, wordList: WordDef[]) =>
     wordList.filter((word) => settings[word.category]);
-
-    const weightedRandom = <T>(items: T[], weights: number[]) => {
-        let i;
-        for (i = 0; i < weights.length; i++) weights[i] += weights[i - 1] || 0;
-    
-        const random = Math.random() * weights[weights.length - 1];
-    
-        for (i = 0; i < weights.length; i++) if (weights[i] > random) break;
-    
-        return items[i];
-    };

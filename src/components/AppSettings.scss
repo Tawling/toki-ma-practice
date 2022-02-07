@@ -25,10 +25,11 @@
         .setting-subgroup {
             display: flex;
             flex-direction: column;
+            margin-left: 40px;
         }
 
         .toggle-switch {
-            margin-left: 40px;
+            margin-right: 40px;
         }
 
         .switch-label.checked {

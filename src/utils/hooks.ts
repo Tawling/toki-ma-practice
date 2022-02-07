@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useLocalStorage } from 'react-use';
+import useLocalStorage from 'react-use/lib/useLocalStorage';
 
 export const useRefState = <T>(initialValue: T): [T, React.MutableRefObject<T>, React.Dispatch<T>] => {
     const [state, setState] = useState<T>(initialValue);

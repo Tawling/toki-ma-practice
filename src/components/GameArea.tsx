@@ -1,26 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from 'reactstrap';
 import { useRefLocalStorage, useRefState } from '../utils/hooks';
 import { buildWordList, fetchWordList, ProgressMap, WordDef } from '../words';
 import FlashCard from './FlashCard';
 import { Settings } from './AppSettings';
+import useAudio from 'react-use/lib/useAudio';
 
 import up_arrow from '../assets/up-arrow.svg';
 import down_arrow from '../assets/down-arrow.svg';
 import left_arrow from '../assets/left-arrow.svg';
 import right_arrow from '../assets/right-arrow.svg';
+import audio_img from '../assets/audio.svg';
 
 import './GameArea.scss';
 import { weightedRandom } from '../utils/weightedRandom';
 
 const RECENT_WORD_TRACK_COUNT = 8;
-const RECENT_SEEN_SIZE = 15;
+const RECENT_SEEN_SIZE = 100;
 
 const ACTIVE_MIN = 5;
 const NEW_MIN = 3;
 
 interface Props {
     settings: Settings;
+    settingsRef: React.MutableRefObject<Settings>;
+    progressMapRef: React.MutableRefObject<ProgressMap | undefined>;
+    setProgressMap: React.Dispatch<ProgressMap>;
 }
 
 const getWordPool = (wordList: WordDef[], progressMap: ProgressMap) => {
@@ -77,83 +82,87 @@ const getWordPool = (wordList: WordDef[], progressMap: ProgressMap) => {
     return [activePool, learnedPool];
 };
 
-const GameArea = ({ settings }: Props) => {
+const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Props) => {
     const [_wordCount, wordCountRef, setWordCount, removeWordCount] = useRefLocalStorage('wordCount', 0);
     const wordCount = _wordCount ?? 0;
     const [curWord, curWordRef, setCurWord] = useRefState(null as WordDef | null);
     const [fullWordList, fullWordListRef, setFullWordList] = useRefState([] as WordDef[]);
     const [activeWordList, activeWordListRef, setActiveWordList] = useRefState([] as WordDef[]);
     const [showAnswer, showAnswerRef, setShowAnswer] = useRefState(false);
-    const [progressMap, progressMapRef, setProgressMap, removeProgressMap] = useRefLocalStorage(
-        'progress',
-        {} as ProgressMap,
-    );
+
+    const [audio, audioState, audioControls, audioRef] = useAudio({
+        src: `./sounds/${curWord?.word}.mp3`,
+        autoPlay: settings.autoplay,
+    });
+
+    const [reversed, setReversed] = useState(settings.reverseCards);
+    const [imageIndex, setImageIndex] = useState(-1);
 
     const [correctClass, setCorrectClass] = useState('correct-btn');
     const [wrongClass, setWrongClass] = useState('wrong-btn');
 
     const pickNewWord = () => {
-        const [activePool, learnedPool] = getWordPool(
-            activeWordListRef.current,
-            progressMapRef.current ?? {}
-        );
-        console.log('pool', activePool, learnedPool);
+        let nextWord: WordDef | undefined | null;
+        if (settingsRef.current.enableProgression) {
+            const [activePool, learnedPool] = getWordPool(activeWordListRef.current, progressMapRef.current ?? {});
+            console.log('pool', activePool, learnedPool);
 
-        const activeList = activeWordListRef.current.filter(
-            ({ word }) => word !== curWordRef.current?.word && activePool.includes(word),
-        );
-        const learnedList = activeWordListRef.current.filter(
-            ({ word }) => word !== curWordRef.current?.word && learnedPool.includes(word),
-        );
-        const weights = activeList.map((word) => {
-            const learnedness =
-                1 -
-                Math.pow(
-                    (progressMapRef.current?.[word.word]?.recentCorrect ?? 0) / (RECENT_WORD_TRACK_COUNT + 0.2),
-                    2,
-                );
-            const staleness =
-                Math.min(
-                    RECENT_SEEN_SIZE,
-                    (wordCountRef.current ?? 0) - (progressMapRef.current?.[word.word]?.lastInstance ?? 0),
-                ) / RECENT_SEEN_SIZE;
-            console.log(word, progressMapRef.current?.[word.word]?.recentCorrect, learnedness, staleness);
-            return learnedness * 0.69 + staleness * 0.3 + 0.01;
-        });
-        weights.push();
-        // const weights = wordList.map(
-        //     (word) =>
-        //         Math.pow(
-        //             (RECENT_WORD_TRACK_COUNT - (progressMap?.[word.word]?.recentRatio ?? 0)) /
-        //                 RECENT_WORD_TRACK_COUNT,
-        //             2,
-        //         ) *
-        //             0.6 +
-        //         (0.35 *
-        //             Math.min(
-        //                 10,
-        //                 (wordCountRef.current ?? 0) - (progressMapRef.current?.[word.word]?.lastInstance ?? 0),
-        //             )) /
-        //             10 +
-        //         0.05,
-        // );
-        console.log(weights);
-        let nextWord =
-            activeList.length > 0 || learnedList.length > 0
-                ? weightedRandom(
-                      [...activeList, learnedList],
-                      [...weights, Math.min(1, Math.max(0, ACTIVE_MIN + NEW_MIN - weights.reduce((a, w) => a + w, 0)))],
-                  )
-                : null;
+            const activeList = activeWordListRef.current.filter(
+                ({ word }) => word !== curWordRef.current?.word && activePool.includes(word),
+            );
+            const learnedList = activeWordListRef.current.filter(
+                ({ word }) => word !== curWordRef.current?.word && learnedPool.includes(word),
+            );
+            const weights = activeList.map((word) => {
+                const learnedness =
+                    1 -
+                    Math.pow(
+                        (progressMapRef.current?.[word.word]?.recentCorrect ?? 0) / (RECENT_WORD_TRACK_COUNT + 0.2),
+                        2,
+                    );
+                const staleness =
+                    Math.min(
+                        RECENT_SEEN_SIZE,
+                        (wordCountRef.current ?? 0) - (progressMapRef.current?.[word.word]?.lastInstance ?? 0),
+                    ) / RECENT_SEEN_SIZE;
+                console.log(word, progressMapRef.current?.[word.word]?.recentCorrect, learnedness, staleness);
+                return learnedness * 0.69 + staleness * 0.3 + 0.01;
+            });
+            console.log(weights);
+            let selection;
+            if (learnedList.length > 0) {
+                selection =
+                    activeList.length > 0
+                        ? weightedRandom(
+                              [...activeList, learnedList],
+                              [
+                                  ...weights,
+                                  Math.min(1, Math.max(0, ACTIVE_MIN + NEW_MIN - weights.reduce((a, w) => a + w, 0))),
+                              ],
+                          )
+                        : learnedList;
+            } else {
+                selection = activeList.length > 0 ? weightedRandom(activeList, weights) : null;
+            }
 
-        if (Array.isArray(nextWord)) {
-            nextWord = nextWord[Math.floor(Math.random() * nextWord.length)];
+            if (Array.isArray(selection)) {
+                nextWord = selection[Math.floor(Math.random() * selection.length)];
+            } else {
+                nextWord = selection;
+            }
+        } else {
+            nextWord = activeWordListRef.current[Math.floor(Math.random() * activeWordListRef.current.length)];
         }
 
         if (!!nextWord) {
             setCurWord(nextWord);
             setShowAnswer(false);
             setWordCount((wordCountRef?.current ?? 0) + 1);
+            console.log(settingsRef.current.randomReversal);
+            setReversed(settingsRef.current.randomReversal ? Math.random() >= 0.5 : settingsRef.current.reverseCards);
+            setImageIndex(Math.floor(Math.random() * nextWord.images.length));
+        } else {
+            console.log('no word...');
         }
     };
 
@@ -188,6 +197,25 @@ const GameArea = ({ settings }: Props) => {
         };
         setProgressMap({ ...progressMapRef.current, [word]: newProgress });
     };
+
+    const markLearned = (word: string) => {
+        const oldProgress = progressMapRef.current?.[word];
+        const newProgress = {
+            count: (oldProgress?.count ?? 0) + 1,
+            correct: (oldProgress?.correct ?? 0) + 1,
+            recent: Array(RECENT_WORD_TRACK_COUNT).fill(true),
+            recentCorrect: RECENT_WORD_TRACK_COUNT,
+            progress: ((oldProgress?.correct ?? 0) + 1) / ((oldProgress?.count ?? 0) + 1),
+            lastInstance: wordCount,
+        };
+        setProgressMap({ ...progressMapRef.current, [word]: newProgress });
+    };
+
+    useEffect(() => {
+        if (!settings.randomReversal) {
+            setReversed(settings.reverseCards);
+        }
+    }, [settings.reverseCards, settings.randomReversal]);
 
     // Fetch word list on first load
     useEffect(() => {
@@ -262,6 +290,33 @@ const GameArea = ({ settings }: Props) => {
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
 
+    const tmCard = (
+        <FlashCard isAnswer={false}>
+            <div>
+                {curWord?.word}
+                {audio}
+                <br />
+                <img
+                    className="icon key-icon"
+                    src={audio_img}
+                    style={{ cursor: 'pointer', height: '1em' }}
+                    onClick={() => {
+                        audioControls.seek(0);
+                        audioControls.play();
+                    }}
+                />
+            </div>
+        </FlashCard>
+    );
+
+    const defCard = <FlashCard isAnswer={true}>{curWord?.definitions.join(', ')}</FlashCard>;
+    const imageCards =
+        curWord?.images.map((url) => (
+            <FlashCard key={url} isAnswer={true}>
+                <img src={url} />
+            </FlashCard>
+        )) ?? [];
+
     return (
         <>
             <div className="game-buttons">
@@ -279,17 +334,40 @@ const GameArea = ({ settings }: Props) => {
                 </Button>
             </div>
             <div className="game-area">
-                <FlashCard isAnswer={false}>{curWord?.word}</FlashCard>
+                {reversed ? (
+                    <>
+                        {defCard}
+                        {imageCards.length ? imageCards[imageIndex] : null}
+                    </>
+                ) : (
+                    tmCard
+                )}
             </div>
             {showAnswer ? (
-                <div className="game-area">
-                    <FlashCard isAnswer={true}>{curWord?.definitions.join(', ')}</FlashCard>
-                    {curWord?.images.map((url) => (
-                        <FlashCard key={url} isAnswer={true}>
-                            <img src={url} />
-                        </FlashCard>
-                    ))}
-                </div>
+                <>
+                    <div className="game-area">
+                        {reversed ? (
+                            tmCard
+                        ) : (
+                            <>
+                                {defCard}
+                                {imageCards}
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <a
+                            href="javascript:void(0);"
+                            onClick={() => {
+                                if (curWord) markLearned(curWord.word);
+                                pickNewWord();
+                            }}
+                            style={{ marginLeft: 50, fontSize: '0.8em' }}
+                        >
+                            I definitely know this word
+                        </a>
+                    </div>
+                </>
             ) : null}
         </>
     );

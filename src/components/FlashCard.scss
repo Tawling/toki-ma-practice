@@ -4,13 +4,16 @@
     border: 3px solid #888;
     border-radius: 10px;
     background-color: #333;
-    padding: px;
+    padding: 4px;
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
     font-size: x-large;
     text-align: center;
+    flex-wrap: wrap;
+    align-content: center;
+    
 
     &.card-answer {
         border-color: #d4bb2d;
@@ -21,5 +24,12 @@
         width: 95%;
         height: 95%;
         margin: 2.5%;
+
+        &.icon {
+            object-fit: scale-down;
+            width: unset;
+            height: unset;
+            margin: unset;
+        }
     }
 }
