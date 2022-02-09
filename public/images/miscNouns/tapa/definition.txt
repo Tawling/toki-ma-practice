@@ -1,8 +1,0 @@
-container
-box
-bowl
-cup
-bag
-purse
-to package
-to fill (a container)

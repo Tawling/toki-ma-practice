@@ -1,7 +1,0 @@
-hole
-door
-opening
-gap
-open
-make a hole
-puncture

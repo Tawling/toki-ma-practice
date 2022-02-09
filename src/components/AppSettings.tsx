@@ -23,6 +23,7 @@ export interface Settings {
     randomReversal: boolean;
     autoplay: boolean;
     enableProgression: boolean;
+    useBaseForm: boolean;
 }
 
 export interface SettingsPartial {
@@ -42,6 +43,7 @@ export interface SettingsPartial {
     randomReversal?: boolean;
     autoplay?: boolean;
     enableProgression?: boolean;
+    useBaseForm?: boolean;
 }
 
 interface Props {
@@ -177,7 +179,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <EngText>Show English Definitions</EngText>
                             <TokiText>li lukin wa e toki Inli</TokiText>
                         </ToggleSwitch> */}
-                        <div>
+                        <div style={{marginBottom: 1}}>
                             <ButtonGroup>
                                 <Button
                                     color={cardType === 0 ? 'success' : 'secondary'}
@@ -199,6 +201,24 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                                     onClick={() => setCardType(2)}
                                 >
                                     Randomize
+                                </Button>
+                            </ButtonGroup>
+                        </div>
+                        <div>
+                            <ButtonGroup>
+                                <Button
+                                    color={settings.useBaseForm ? 'success' : 'secondary'}
+                                    active={false}
+                                    onClick={() => updateSettings({ useBaseForm: true })}
+                                >
+                                    Use base form
+                                </Button>
+                                <Button
+                                    color={!settings.useBaseForm ? 'success' : 'secondary'}
+                                    active={false}
+                                    onClick={() => updateSettings({ useBaseForm: false })}
+                                >
+                                    Randomize part of speech
                                 </Button>
                             </ButtonGroup>
                         </div>

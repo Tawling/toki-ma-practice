@@ -96,6 +96,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     });
 
     const [reversed, setReversed] = useState(settings.reverseCards);
+    const [randomPoS, setPoS] = useState('noun');
     const [imageIndex, setImageIndex] = useState(-1);
 
     const [correctClass, setCorrectClass] = useState('correct-btn');
@@ -125,10 +126,8 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                         RECENT_SEEN_SIZE,
                         (wordCountRef.current ?? 0) - (progressMapRef.current?.[word.word]?.lastInstance ?? 0),
                     ) / RECENT_SEEN_SIZE;
-                console.log(word, progressMapRef.current?.[word.word]?.recentCorrect, learnedness, staleness);
                 return learnedness * 0.69 + staleness * 0.3 + 0.01;
             });
-            console.log(weights);
             let selection;
             if (learnedList.length > 0) {
                 selection =
@@ -158,7 +157,8 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
             setCurWord(nextWord);
             setShowAnswer(false);
             setWordCount((wordCountRef?.current ?? 0) + 1);
-            console.log(settingsRef.current.randomReversal);
+            const validPoS = ['noun', 'verb', 'mod', 'prep', 'particle', 'numeral'].filter((p) => nextWord?.[p])
+            setPoS(validPoS[Math.floor(Math.random() * validPoS.length)]);
             setReversed(settingsRef.current.randomReversal ? Math.random() >= 0.5 : settingsRef.current.reverseCards);
             setImageIndex(Math.floor(Math.random() * nextWord.images.length));
         } else {
@@ -290,10 +290,12 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
 
+    const pos = settings.useBaseForm ? curWord?.base : randomPoS;
+
     const tmCard = (
         <FlashCard isAnswer={false}>
             <div>
-                {curWord?.word}
+                {curWord ? ((pos === 'mod' ? '[sa] ' : (pos === 'verb' ? '[li] ' : '')) + curWord?.word) : null}
                 {audio}
                 <br />
                 <img
@@ -309,7 +311,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
         </FlashCard>
     );
 
-    const defCard = <FlashCard isAnswer={true}>{curWord?.definitions.join(', ')}</FlashCard>;
+    const defCard = <FlashCard isAnswer={true}>{curWord?.[pos ?? curWord?.base] ?? [curWord?.noun, curWord?.verb, curWord?.mod, curWord?.prep, curWord?.particle, curWord?.numeral].filter((a)=>a)[0]}</FlashCard>;
     const imageCards =
         curWord?.images.map((url) => (
             <FlashCard key={url} isAnswer={true}>

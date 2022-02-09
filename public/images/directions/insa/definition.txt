@@ -1,2 +1,0 @@
-inside (place)
-inside-ward

@@ -31,6 +31,7 @@ function App() {
         randomReversal: false,
         autoplay: false,
         enableProgression: true,
+        useBaseForm: true,
     } as Settings);
     const [progressMap, progressMapRef, setProgressMap, removeProgressMap] = useRefLocalStorage(
         'progress',

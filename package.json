@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "node build-word-list.js && tsc && vite build",
-    "preview": "vite preview",
-    "compile-words": "node build-word-list.js"
+    "build": "node compile-words.js && node compile-images.js && tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
