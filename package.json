@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "node compile-words.js && node compile-images.js && tsc && vite build",
+    "build": "node compile-images.js && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
