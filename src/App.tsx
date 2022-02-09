@@ -14,7 +14,7 @@ export const LanguageContext = createContext('eng');
 
 function App() {
     const [language, setLanguage] = useState('eng');
-    const [settings, settingsRef, setSettings] = useRefState({
+    const [settings, settingsRef, setSettings, removeSettings] = useRefLocalStorage('tokimaSettings', {
         directions: true,
         animals: true,
         bodyParts: true,
@@ -34,13 +34,12 @@ function App() {
         useBaseForm: true,
     } as Settings);
     const [progressMap, progressMapRef, setProgressMap, removeProgressMap] = useRefLocalStorage(
-        'progress',
+        'tokimaProgress',
         {} as ProgressMap,
     );
 
     const [showModal, setShowModal] = useState(false);
     console.log(showModal);
-
     return (
         <LanguageContext.Provider value={language}>
             <Modal isOpen={showModal} toggle={() => setShowModal(false)}>
@@ -88,10 +87,11 @@ function App() {
                         </div>
                     </div>
                 </header>
-                <AppSettings
+                {settings && <AppSettings
                     settings={settings}
                     updateSettings={(partial: SettingsPartial) => setSettings({ ...settings, ...partial })}
-                />
+                />}
+                
                 <GameArea
                     settings={settings}
                     settingsRef={settingsRef}

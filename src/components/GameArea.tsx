@@ -22,8 +22,8 @@ const ACTIVE_MIN = 5;
 const NEW_MIN = 3;
 
 interface Props {
-    settings: Settings;
-    settingsRef: React.MutableRefObject<Settings>;
+    settings: Settings | undefined;
+    settingsRef: React.MutableRefObject<Settings | undefined>;
     progressMapRef: React.MutableRefObject<ProgressMap | undefined>;
     setProgressMap: React.Dispatch<ProgressMap>;
 }
@@ -92,10 +92,10 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
 
     const [audio, audioState, audioControls, audioRef] = useAudio({
         src: `./sounds/${curWord?.word}.mp3`,
-        autoPlay: settings.autoplay,
+        autoPlay: settings?.autoplay,
     });
 
-    const [reversed, setReversed] = useState(settings.reverseCards);
+    const [reversed, setReversed] = useState(!!settings?.reverseCards);
     const [randomPoS, setPoS] = useState('noun');
     const [imageIndex, setImageIndex] = useState(-1);
 
@@ -104,7 +104,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
 
     const pickNewWord = () => {
         let nextWord: WordDef | undefined | null;
-        if (settingsRef.current.enableProgression) {
+        if (settingsRef.current?.enableProgression) {
             const [activePool, learnedPool] = getWordPool(activeWordListRef.current, progressMapRef.current ?? {});
             console.log('pool', activePool, learnedPool);
 
@@ -157,9 +157,13 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
             setCurWord(nextWord);
             setShowAnswer(false);
             setWordCount((wordCountRef?.current ?? 0) + 1);
-            const validPoS = ['noun', 'verb', 'mod', 'prep', 'particle', 'numeral'].filter((p) => nextWord?.[p])
+            const validPoS = ['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral'].filter(
+                (p) => nextWord?.[p],
+            );
             setPoS(validPoS[Math.floor(Math.random() * validPoS.length)]);
-            setReversed(settingsRef.current.randomReversal ? Math.random() >= 0.5 : settingsRef.current.reverseCards);
+            setReversed(
+                !!(settingsRef.current?.randomReversal ? Math.random() >= 0.5 : settingsRef.current?.reverseCards),
+            );
             setImageIndex(Math.floor(Math.random() * nextWord.images.length));
         } else {
             console.log('no word...');
@@ -212,10 +216,10 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     };
 
     useEffect(() => {
-        if (!settings.randomReversal) {
-            setReversed(settings.reverseCards);
+        if (!settings?.randomReversal) {
+            setReversed(!!settings?.reverseCards);
         }
-    }, [settings.reverseCards, settings.randomReversal]);
+    }, [settings?.reverseCards, settings?.randomReversal]);
 
     // Fetch word list on first load
     useEffect(() => {
@@ -227,7 +231,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
 
     // handle settings change
     useEffect(() => {
-        setActiveWordList(buildWordList(settings, fullWordList));
+        if (settings) setActiveWordList(buildWordList(settings, fullWordList));
     }, [fullWordList, settings]);
 
     // handle word list change
@@ -290,12 +294,34 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
 
-    const pos = settings.useBaseForm ? curWord?.base : randomPoS;
+    if (!!!activeWordList.length) {
+        return (
+            <>
+                <div className="game-buttons">
+                    <Button disabled={true}>
+                        Skip Word <img className="key-icon" src={left_arrow} />
+                    </Button>
+                    <Button disabled={true}>
+                        {showAnswer ? 'Hide Answer' : 'Show Answer'} <img className="key-icon" src={right_arrow} />
+                    </Button>
+                    <Button className={correctClass} disabled={!true}>
+                        Correct <img className="key-icon" src={up_arrow} />
+                    </Button>
+                    <Button className={wrongClass} disabled={!true}>
+                        Wrong <img className="key-icon" src={down_arrow} />
+                    </Button>
+                </div>
+                <div className="game-area">Loading word list...</div>
+            </>
+        );
+    }
+
+    const pos = settings?.useBaseForm ? curWord?.base : randomPoS;
 
     const tmCard = (
         <FlashCard isAnswer={false}>
             <div>
-                {curWord ? ((pos === 'mod' ? '[sa] ' : (pos === 'verb' ? '[li] ' : '')) + curWord?.word) : null}
+                {curWord ? (pos === 'modifier' ? '[sa] ' : pos === 'verb' ? '[li] ' : '') + curWord?.word : null}
                 {audio}
                 <br />
                 <img
@@ -311,7 +337,19 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
         </FlashCard>
     );
 
-    const defCard = <FlashCard isAnswer={true}>{curWord?.[pos ?? curWord?.base] ?? [curWord?.noun, curWord?.verb, curWord?.mod, curWord?.prep, curWord?.particle, curWord?.numeral].filter((a)=>a)[0]}</FlashCard>;
+    const defCard = (
+        <FlashCard isAnswer={true}>
+            {curWord?.[pos ?? curWord?.base] ??
+                [
+                    curWord?.noun,
+                    curWord?.verb,
+                    curWord?.modifier,
+                    curWord?.preposition,
+                    curWord?.particle,
+                    curWord?.numeral,
+                ].filter((a) => a)[0]}
+        </FlashCard>
+    );
     const imageCards =
         curWord?.images.map((url) => (
             <FlashCard key={url} isAnswer={true}>

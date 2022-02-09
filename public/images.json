@@ -1,51 +1,51 @@
 {
   "anpa": [
-    "./images/anpa/fn"
+    "./images/anpa/anpa1.png"
   ],
   "insa": [
-    "./images/insa/fn",
-    "./images/insa/fn"
+    "./images/insa/insa1.png",
+    "./images/insa/insa2.png"
   ],
   "jupa": [
-    "./images/jupa/fn"
+    "./images/jupa/jupa1.png"
   ],
   "kita": [
-    "./images/kita/fn"
+    "./images/kita/kita1.jpg"
   ],
   "kona": [
-    "./images/kona/fn"
+    "./images/kona/kona1.png"
   ],
   "matija": [
-    "./images/matija/fn"
+    "./images/matija/matija1.png"
   ],
   "monsi": [
-    "./images/monsi/fn",
-    "./images/monsi/fn"
+    "./images/monsi/monsi1.png",
+    "./images/monsi/monsi2.jpg"
   ],
   "mu": [
-    "./images/mu/fn"
+    "./images/mu/mu1.jpeg"
   ],
   "neje": [
-    "./images/neje/fn"
+    "./images/neje/neje1.jpg"
   ],
   "nesi": [
-    "./images/nesi/fn",
-    "./images/nesi/fn"
+    "./images/nesi/nesi1.png",
+    "./images/nesi/nesi2.png"
   ],
   "pawo": [
-    "./images/pawo/fn",
-    "./images/pawo/fn"
+    "./images/pawo/pawo1.jpg",
+    "./images/pawo/pawo2.jpg"
   ],
   "poka": [
-    "./images/poka/fn"
+    "./images/poka/poka1.jpg"
   ],
   "sinpin": [
-    "./images/sinpin/fn"
+    "./images/sinpin/sinpin1.png"
   ],
   "soto": [
-    "./images/soto/fn"
+    "./images/soto/soto1.png"
   ],
   "wi": [
-    "./images/wi/fn"
+    "./images/wi/wi1.png"
   ]
 }
