@@ -104,8 +104,8 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const [correctClass, setCorrectClass] = useState('correct-btn');
     const [wrongClass, setWrongClass] = useState('wrong-btn');
 
-    const {fontSize: fontSize1, ref: fitTextRef1} = useFitText();
-    const {fontSize: fontSize2, ref: fitTextRef2} = useFitText();
+    const { fontSize: fontSize1, ref: fitTextRef1 } = useFitText();
+    const { fontSize: fontSize2, ref: fitTextRef2 } = useFitText();
 
     const pickNewWord = () => {
         let nextWord: WordDef | undefined | null;
@@ -169,8 +169,14 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                 !!(settingsRef.current?.randomReversal ? Math.random() >= 0.5 : settingsRef.current?.reverseCards),
             );
             setImageIndex(Math.floor(Math.random() * nextWord.images.length));
-            setNewWord((settingsRef.current?.enableProgression && progressMapRef.current?.[nextWord.word] === undefined) ?? false)
-            setShowAnswer((settingsRef.current?.enableProgression && progressMapRef.current?.[nextWord.word] === undefined) ?? false);
+            setNewWord(
+                (settingsRef.current?.enableProgression && progressMapRef.current?.[nextWord.word] === undefined) ??
+                    false,
+            );
+            setShowAnswer(
+                (settingsRef.current?.enableProgression && progressMapRef.current?.[nextWord.word] === undefined) ??
+                    false,
+            );
         } else {
             console.log('no word...');
         }
@@ -326,58 +332,66 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const pos = settings?.useBaseForm ? curWord?.base : randomPoS;
 
     const tmCard = (
-        <FlashCard ref={fitTextRef1} style={{fontSize1}} isAnswer={false}>
-            <div>
-                {curWord ? (
-                    <>
-                        {newWord ? <div className="new-word">New Word</div>: null}
-                        {pos === 'modifier' ? (
-                            <span className="prefix">[sa]</span>
-                        ) : pos === 'verb' ? (
-                            <span className="prefix">[li]</span>
-                        ) : null}{' '}
-                        {curWord?.word}
-                    </>
-                ) : null}
-                {audio}
-                <br />
-                <img
-                    className="icon key-icon"
-                    src={audio_img}
-                    style={{ cursor: 'pointer', height: '1em' }}
-                    onClick={() => {
-                        audioControls.seek(0);
-                        audioControls.play();
-                    }}
-                />
-            </div>
-        </FlashCard>
+        <div ref={fitTextRef1} style={{ fontSize: fontSize1 }}>
+            <FlashCard isAnswer={false}>
+                <div>
+                    {curWord ? (
+                        <>
+                            {newWord ? <div className="new-word">New Word</div> : null}
+                            {pos === 'modifier' ? (
+                                <span className="prefix">[sa]</span>
+                            ) : pos === 'verb' ? (
+                                <span className="prefix">[li]</span>
+                            ) : null}{' '}
+                            {curWord?.word}
+                        </>
+                    ) : null}
+                    {audio}
+                    <br />
+                    <img
+                        className="icon key-icon"
+                        src={audio_img}
+                        style={{ cursor: 'pointer', height: '1em' }}
+                        onClick={() => {
+                            audioControls.seek(0);
+                            audioControls.play();
+                        }}
+                    />
+                </div>
+            </FlashCard>
+        </div>
     );
 
-    const defCard =
-        (settings?.useBaseForm || settings?.useRandomForm) && !newWord ? (
-            <FlashCard ref={fitTextRef2} style={{fontSize2}} isAnswer={true}>
-                {curWord?.[pos ?? curWord?.base] ??
-                    [
-                        curWord?.noun,
-                        curWord?.verb,
-                        curWord?.modifier,
-                        curWord?.preposition,
-                        curWord?.particle,
-                        curWord?.numeral,
-                    ].filter((a) => a)[0]}
-            </FlashCard>
-        ) : (
-            <FlashCard ref={fitTextRef2} style={{fontSize2}} isAnswer={true}>
-                {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
-                    .filter((p) => curWord?.[p])
-                    .map((pos) => (
-                        <div>
-                            <Badge color='secondary' pill style={{fontSize: '0.5em', marginRight: 5}}>{pos}{' '}</Badge>{curWord?.[pos]}
-                        </div>
-                    ))}
-            </FlashCard>
-        );
+    const defCard = (
+        <div ref={fitTextRef2} style={{ fontSize: fontSize2 }}>
+            {(settings?.useBaseForm || settings?.useRandomForm) && !newWord ? (
+                <FlashCard isAnswer={true}>
+                    {curWord?.[pos ?? curWord?.base] ??
+                        [
+                            curWord?.noun,
+                            curWord?.verb,
+                            curWord?.modifier,
+                            curWord?.preposition,
+                            curWord?.particle,
+                            curWord?.numeral,
+                        ].filter((a) => a)[0]}
+                </FlashCard>
+            ) : (
+                <FlashCard ref={fitTextRef2} style={{ fontSize2 }} isAnswer={true}>
+                    {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
+                        .filter((p) => curWord?.[p])
+                        .map((pos) => (
+                            <div key={pos}>
+                                <Badge color="secondary" pill style={{ fontSize: '0.5em', marginRight: 5 }}>
+                                    {pos}{' '}
+                                </Badge>
+                                {curWord?.[pos]}
+                            </div>
+                        ))}
+                </FlashCard>
+            )}
+        </div>
+    );
     const imageCards =
         curWord?.images.map((url) => (
             <FlashCard key={url} isAnswer={true}>
@@ -402,7 +416,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                 </Button>
             </div>
             <div className="game-area">
-                {reversed && !newWord? (
+                {reversed && !newWord ? (
                     <>
                         {defCard}
                         {imageCards.length ? imageCards[imageIndex] : null}
@@ -414,7 +428,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
             {showAnswer || newWord ? (
                 <>
                     <div className="game-area">
-                        {reversed && !newWord? (
+                        {reversed && !newWord ? (
                             tmCard
                         ) : (
                             <>
@@ -425,7 +439,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                     </div>
                     <div>
                         <a
-                            href="javascript:void(0);"
+                            href="#"
                             onClick={() => {
                                 if (curWord) markLearned(curWord.word);
                                 pickNewWord();
