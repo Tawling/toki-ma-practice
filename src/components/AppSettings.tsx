@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import EngText from './common/EngText';
 import TokiText from './common/TokiText';
 
+import chevron from './../assets/chevron.svg';
+
 export interface Settings {
     [key: string]: boolean;
     directions: boolean;
@@ -24,6 +26,7 @@ export interface Settings {
     autoplay: boolean;
     enableProgression: boolean;
     useBaseForm: boolean;
+    useRandomForm: boolean;
 }
 
 export interface SettingsPartial {
@@ -44,6 +47,7 @@ export interface SettingsPartial {
     autoplay?: boolean;
     enableProgression?: boolean;
     useBaseForm?: boolean;
+    useRandomForm?: boolean;
 }
 
 interface Props {
@@ -54,26 +58,34 @@ interface Props {
 const AppSettings = ({ settings, updateSettings }: Props) => {
     const [collapseWords, setCollapseWords] = useState(true);
     const [collapseSettings, setCollapseSettings] = useState(true);
-    const [cardType, setCardType] = useState(2);
+    const [cardType, setCardType] = useState(settings.randomReversal ? 2 : (settings.reverseCards ? 1 : 0));
+    const [definitionType, setDefinitionType] = useState(settings.useRandomForm ? 2 : (settings.useBaseForm ? 1 : 0));
 
     useEffect(() => {
         if (cardType === 0) {
-            updateSettings({ reverseCards: false });
-            updateSettings({ randomReversal: false });
+            updateSettings({ reverseCards: false, randomReversal: false });
         } else if (cardType === 1) {
-            updateSettings({ reverseCards: true });
-            updateSettings({ randomReversal: false });
+            updateSettings({ reverseCards: true, randomReversal: false });
         } else {
-            updateSettings({ reverseCards: false });
-            updateSettings({ randomReversal: true });
+            updateSettings({ reverseCards: false, randomReversal: true });
         }
     }, [cardType]);
+
+    useEffect(() => {
+        if (definitionType === 0) {
+            updateSettings({ useBaseForm: false, useRandomForm: false });
+        } else if (definitionType === 1) {
+            updateSettings({ useBaseForm: true, useRandomForm: false });
+        } else {
+            updateSettings({ useBaseForm: false, useRandomForm: true });
+        }
+    }, [definitionType]);
     return (
         <div className="settings-container">
             <span className="setting-group-heading" onClick={() => setCollapseWords(!collapseWords)}>
                 <EngText>Words</EngText>
                 <TokiText>nimi</TokiText>
-                <span>{collapseWords ? ' ⮞' : ' ⮟'}</span>
+                <img className={`key-icon collapse-icon ${collapseWords ? '' : 'expanded'}`} src={chevron} />
             </span>
             <Collapse isOpen={!collapseWords}>
                 <div className="setting-group">
@@ -167,7 +179,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
             <span className="setting-group-heading" onClick={() => setCollapseSettings(!collapseSettings)}>
                 <EngText>Settings</EngText>
                 <TokiText>saku</TokiText>
-                <span>{collapseSettings ? ' ⮞' : ' ⮟'}</span>
+                <img className={`key-icon collapse-icon ${collapseSettings ? '' : 'expanded'}`} src={chevron} />
             </span>
             <Collapse isOpen={!collapseSettings}>
                 <div className="setting-group">
@@ -179,7 +191,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <EngText>Show English Definitions</EngText>
                             <TokiText>li lukin wa e toki Inli</TokiText>
                         </ToggleSwitch> */}
-                        <div style={{marginBottom: 1}}>
+                        <div style={{ marginBottom: 1 }}>
                             <ButtonGroup>
                                 <Button
                                     color={cardType === 0 ? 'success' : 'secondary'}
@@ -207,16 +219,23 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                         <div>
                             <ButtonGroup>
                                 <Button
-                                    color={settings.useBaseForm ? 'success' : 'secondary'}
+                                    color={definitionType === 0 ? 'success' : 'secondary'}
                                     active={false}
-                                    onClick={() => updateSettings({ useBaseForm: true })}
+                                    onClick={() => setDefinitionType(0)}
+                                >
+                                    Use full definition
+                                </Button>
+                                <Button
+                                    color={definitionType === 1 ? 'success' : 'secondary'}
+                                    active={false}
+                                    onClick={() => setDefinitionType(1)}
                                 >
                                     Use base form
                                 </Button>
                                 <Button
-                                    color={!settings.useBaseForm ? 'success' : 'secondary'}
+                                    color={definitionType === 2 ? 'success' : 'secondary'}
                                     active={false}
-                                    onClick={() => updateSettings({ useBaseForm: false })}
+                                    onClick={() => setDefinitionType(2)}
                                 >
                                     Randomize part of speech
                                 </Button>

@@ -31,7 +31,8 @@ function App() {
         randomReversal: false,
         autoplay: false,
         enableProgression: true,
-        useBaseForm: true,
+        useBaseForm: false,
+        useRandomForm: true,
     } as Settings);
     const [progressMap, progressMapRef, setProgressMap, removeProgressMap] = useRefLocalStorage(
         'tokimaProgress',

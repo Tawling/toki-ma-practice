@@ -3,16 +3,27 @@
     height: 250px;
     border: 3px solid #888;
     border-radius: 10px;
-    background-color: #333;
+    background-color: #444;
     padding: 4px;
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
-    font-size: x-large;
     text-align: center;
     flex-wrap: wrap;
     align-content: center;
+
+    .prefix {
+        color: #888;
+        font-weight: 200;
+        margin-right: 5px;
+        font-size: 90%;
+    }
+
+    .new-word {
+        color: red;
+        font-size: .8em;
+    }
     
 
     &.card-answer {

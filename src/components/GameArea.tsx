@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button } from 'reactstrap';
+import { Badge, Button } from 'reactstrap';
 import { useRefLocalStorage, useRefState } from '../utils/hooks';
 import { buildWordList, fetchWordList, ProgressMap, WordDef } from '../words';
 import FlashCard from './FlashCard';
 import { Settings } from './AppSettings';
 import useAudio from 'react-use/lib/useAudio';
+import useFitText from 'use-fit-text';
 
 import up_arrow from '../assets/up-arrow.svg';
 import down_arrow from '../assets/down-arrow.svg';
@@ -98,9 +99,13 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const [reversed, setReversed] = useState(!!settings?.reverseCards);
     const [randomPoS, setPoS] = useState('noun');
     const [imageIndex, setImageIndex] = useState(-1);
+    const [newWord, newWordRef, setNewWord] = useRefState(false);
 
     const [correctClass, setCorrectClass] = useState('correct-btn');
     const [wrongClass, setWrongClass] = useState('wrong-btn');
+
+    const {fontSize: fontSize1, ref: fitTextRef1} = useFitText();
+    const {fontSize: fontSize2, ref: fitTextRef2} = useFitText();
 
     const pickNewWord = () => {
         let nextWord: WordDef | undefined | null;
@@ -155,7 +160,6 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
 
         if (!!nextWord) {
             setCurWord(nextWord);
-            setShowAnswer(false);
             setWordCount((wordCountRef?.current ?? 0) + 1);
             const validPoS = ['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral'].filter(
                 (p) => nextWord?.[p],
@@ -165,6 +169,8 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                 !!(settingsRef.current?.randomReversal ? Math.random() >= 0.5 : settingsRef.current?.reverseCards),
             );
             setImageIndex(Math.floor(Math.random() * nextWord.images.length));
+            setNewWord((settingsRef.current?.enableProgression && progressMapRef.current?.[nextWord.word] === undefined) ?? false)
+            setShowAnswer((settingsRef.current?.enableProgression && progressMapRef.current?.[nextWord.word] === undefined) ?? false);
         } else {
             console.log('no word...');
         }
@@ -245,6 +251,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
         pickNewWord();
     };
     const handleShowBtn = () => {
+        if (newWordRef.current) return;
         if (showAnswerRef.current) {
             // go to next?
             setShowAnswer(false);
@@ -319,9 +326,19 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const pos = settings?.useBaseForm ? curWord?.base : randomPoS;
 
     const tmCard = (
-        <FlashCard isAnswer={false}>
+        <FlashCard ref={fitTextRef1} style={{fontSize1}} isAnswer={false}>
             <div>
-                {curWord ? (pos === 'modifier' ? '[sa] ' : pos === 'verb' ? '[li] ' : '') + curWord?.word : null}
+                {curWord ? (
+                    <>
+                        {newWord ? <div className="new-word">New Word</div>: null}
+                        {pos === 'modifier' ? (
+                            <span className="prefix">[sa]</span>
+                        ) : pos === 'verb' ? (
+                            <span className="prefix">[li]</span>
+                        ) : null}{' '}
+                        {curWord?.word}
+                    </>
+                ) : null}
                 {audio}
                 <br />
                 <img
@@ -337,19 +354,30 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
         </FlashCard>
     );
 
-    const defCard = (
-        <FlashCard isAnswer={true}>
-            {curWord?.[pos ?? curWord?.base] ??
-                [
-                    curWord?.noun,
-                    curWord?.verb,
-                    curWord?.modifier,
-                    curWord?.preposition,
-                    curWord?.particle,
-                    curWord?.numeral,
-                ].filter((a) => a)[0]}
-        </FlashCard>
-    );
+    const defCard =
+        (settings?.useBaseForm || settings?.useRandomForm) && !newWord ? (
+            <FlashCard ref={fitTextRef2} style={{fontSize2}} isAnswer={true}>
+                {curWord?.[pos ?? curWord?.base] ??
+                    [
+                        curWord?.noun,
+                        curWord?.verb,
+                        curWord?.modifier,
+                        curWord?.preposition,
+                        curWord?.particle,
+                        curWord?.numeral,
+                    ].filter((a) => a)[0]}
+            </FlashCard>
+        ) : (
+            <FlashCard ref={fitTextRef2} style={{fontSize2}} isAnswer={true}>
+                {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
+                    .filter((p) => curWord?.[p])
+                    .map((pos) => (
+                        <div>
+                            <Badge color='secondary' pill style={{fontSize: '0.5em', marginRight: 5}}>{pos}{' '}</Badge>{curWord?.[pos]}
+                        </div>
+                    ))}
+            </FlashCard>
+        );
     const imageCards =
         curWord?.images.map((url) => (
             <FlashCard key={url} isAnswer={true}>
@@ -363,7 +391,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                 <Button onClick={handleSkipBtn}>
                     Skip Word <img className="key-icon" src={left_arrow} />
                 </Button>
-                <Button onClick={handleShowBtn}>
+                <Button onClick={handleShowBtn} disabled={newWord}>
                     {showAnswer ? 'Hide Answer' : 'Show Answer'} <img className="key-icon" src={right_arrow} />
                 </Button>
                 <Button className={correctClass} onClick={handleCorrectBtn} disabled={!showAnswer}>
@@ -374,7 +402,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                 </Button>
             </div>
             <div className="game-area">
-                {reversed ? (
+                {reversed && !newWord? (
                     <>
                         {defCard}
                         {imageCards.length ? imageCards[imageIndex] : null}
@@ -383,10 +411,10 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                     tmCard
                 )}
             </div>
-            {showAnswer ? (
+            {showAnswer || newWord ? (
                 <>
                     <div className="game-area">
-                        {reversed ? (
+                        {reversed && !newWord? (
                             tmCard
                         ) : (
                             <>

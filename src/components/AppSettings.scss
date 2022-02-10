@@ -1,9 +1,22 @@
 .settings-container {
     border: 3px solid #888;
+    background-color: #2a2a2a;
     border-radius: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
+
+    .collapse-icon {
+        display: inline-block;
+        height: 1em;
+        margin-left: 10px;
+        filter: invert(100%) sepia(0%) saturate(7491%) hue-rotate(96deg) brightness(106%) contrast(101%);
+        transition: transform 0.2s;
+
+        &.expanded {
+            transform: rotate(90deg);
+        }
+    }
 
     .setting-group-heading {
         font-size: 22px;
