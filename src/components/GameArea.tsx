@@ -338,11 +338,11 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                     {curWord ? (
                         <>
                             {newWord ? <div className="new-word">New Word</div> : null}
-                            {pos === 'modifier' ? (
+                            {!newWord && (pos === 'modifier' ? (
                                 <span className="prefix">[sa]</span>
                             ) : pos === 'verb' ? (
                                 <span className="prefix">[li]</span>
-                            ) : null}{' '}
+                            ) : null)}{' '}
                             {curWord?.word}
                         </>
                     ) : null}
