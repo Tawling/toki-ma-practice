@@ -86,6 +86,7 @@ export const fetchWordList = async (language = 'English'): Promise<WordDef[]> =>
                     particle: 'particles',
                     preposition: 'prepositions',
                     numeral: 'numbers',
+                    irregular: 'irregulars',
                 }[word.base] ??
                 '',
         }))

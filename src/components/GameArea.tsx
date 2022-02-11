@@ -377,7 +377,7 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
                         ].filter((a) => a)[0]}
                 </FlashCard>
             ) : (
-                <FlashCard ref={fitTextRef2} style={{ fontSize2 }} isAnswer={true}>
+                <FlashCard isAnswer={true}>
                     {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
                         .filter((p) => curWord?.[p])
                         .map((pos) => (

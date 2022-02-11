@@ -11,7 +11,7 @@ export interface Settings {
     [key: string]: boolean;
     directions: boolean;
     animals: boolean;
-    bodyParts: boolean;
+    irregulars: boolean;
     miscNouns: boolean;
     miscVerbs: boolean;
     colors: boolean;
@@ -32,7 +32,7 @@ export interface Settings {
 export interface SettingsPartial {
     directions?: boolean;
     animals?: boolean;
-    bodyParts?: boolean;
+    irregulars?: boolean;
     miscNouns?: boolean;
     miscVerbs?: boolean;
     colors?: boolean;
@@ -105,18 +105,18 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                             <TokiText>nimi janwa</TokiText>
                         </ToggleSwitch>
                         <ToggleSwitch
-                            checked={settings.bodyParts}
-                            onChange={(value: boolean) => updateSettings({ bodyParts: value })}
-                        >
-                            <EngText>Body Parts</EngText>
-                            <TokiText>nimi pi osa tijelo</TokiText>
-                        </ToggleSwitch>
-                        <ToggleSwitch
                             checked={settings.miscNouns}
                             onChange={(value: boolean) => updateSettings({ miscNouns: value })}
                         >
                             <EngText>Misc. Nouns</EngText>
                             <TokiText>nimi ante pi ijo</TokiText>
+                        </ToggleSwitch>
+                        <ToggleSwitch
+                            checked={settings.irregulars}
+                            onChange={(value: boolean) => updateSettings({ irregulars: value })}
+                        >
+                            <EngText>Irregulars</EngText>
+                            <TokiText>nimi pi osa tijelo</TokiText>
                         </ToggleSwitch>
                     </div>
                     <div className="setting-subgroup">

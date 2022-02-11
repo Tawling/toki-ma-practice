@@ -17,7 +17,7 @@ function App() {
     const [settings, settingsRef, setSettings, removeSettings] = useRefLocalStorage('tokimaSettings', {
         directions: true,
         animals: true,
-        bodyParts: true,
+        irregulars: true,
         miscNouns: true,
         miscVerbs: true,
         colors: true,
