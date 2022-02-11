@@ -1,21 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
+import useFitText from 'use-fit-text';
 
 import './FlashCard.scss';
 
 interface Props {
     children: React.ReactNode;
     isAnswer: boolean;
-    ref?: React.MutableRefObject<HTMLDivElement>;
     style?: object;
 }
 
-const FlashCard = ({ children, isAnswer = false, ref, style }: Props) => {
+const FlashCard = ({ children, isAnswer = false, style }: Props) => {
+    const { fontSize, ref } = useFitText();
     return (
         <div style={{ fontSize: 'x-large' }}>
             <div
                 ref={ref}
-                style={style}
+                style={{...style, fontSize}}
                 className={classNames('flashcard', {
                     'card-answer': isAnswer,
                 })}

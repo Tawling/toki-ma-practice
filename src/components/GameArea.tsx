@@ -104,9 +104,6 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const [correctClass, setCorrectClass] = useState('correct-btn');
     const [wrongClass, setWrongClass] = useState('wrong-btn');
 
-    const { fontSize: fontSize1, ref: fitTextRef1 } = useFitText();
-    const { fontSize: fontSize2, ref: fitTextRef2 } = useFitText();
-
     const pickNewWord = () => {
         let nextWord: WordDef | undefined | null;
         if (settingsRef.current?.enableProgression) {
@@ -332,66 +329,62 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const pos = settings?.useBaseForm ? curWord?.base : randomPoS;
 
     const tmCard = (
-        <div ref={fitTextRef1} style={{ fontSize: fontSize1 }}>
-            <FlashCard isAnswer={false}>
-                <div>
-                    {curWord ? (
-                        <>
-                            {newWord ? <div className="new-word">New Word</div> : null}
-                            {!newWord && (pos === 'modifier' ? (
+        <FlashCard isAnswer={false}>
+            <div>
+                {curWord ? (
+                    <>
+                        {newWord ? <div className="new-word">New Word</div> : null}
+                        {!newWord &&
+                            (pos === 'modifier' ? (
                                 <span className="prefix">[sa]</span>
                             ) : pos === 'verb' ? (
                                 <span className="prefix">[li]</span>
                             ) : null)}{' '}
-                            {curWord?.word}
-                        </>
-                    ) : null}
-                    {audio}
-                    <br />
-                    <img
-                        className="icon key-icon"
-                        src={audio_img}
-                        style={{ cursor: 'pointer', height: '1em' }}
-                        onClick={() => {
-                            audioControls.seek(0);
-                            audioControls.play();
-                        }}
-                    />
-                </div>
-            </FlashCard>
-        </div>
+                        {curWord?.word}
+                    </>
+                ) : null}
+                {audio}
+                <br />
+                <img
+                    className="icon key-icon"
+                    src={audio_img}
+                    style={{ cursor: 'pointer', height: '1em' }}
+                    onClick={() => {
+                        audioControls.seek(0);
+                        audioControls.play();
+                    }}
+                />
+            </div>
+        </FlashCard>
     );
 
-    const defCard = (
-        <div ref={fitTextRef2} style={{ fontSize: fontSize2 }}>
-            {(settings?.useBaseForm || settings?.useRandomForm) && !newWord ? (
-                <FlashCard isAnswer={true}>
-                    {curWord?.[pos ?? curWord?.base] ??
-                        [
-                            curWord?.noun,
-                            curWord?.verb,
-                            curWord?.modifier,
-                            curWord?.preposition,
-                            curWord?.particle,
-                            curWord?.numeral,
-                        ].filter((a) => a)[0]}
-                </FlashCard>
-            ) : (
-                <FlashCard isAnswer={true}>
-                    {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
-                        .filter((p) => curWord?.[p])
-                        .map((pos) => (
-                            <div key={pos}>
-                                <Badge color="secondary" pill style={{ fontSize: '0.5em', marginRight: 5 }}>
-                                    {pos}{' '}
-                                </Badge>
-                                {curWord?.[pos]}
-                            </div>
-                        ))}
-                </FlashCard>
-            )}
-        </div>
-    );
+    const defCard =
+        (settings?.useBaseForm || settings?.useRandomForm) && !newWord ? (
+            <FlashCard isAnswer={true}>
+                {curWord?.[pos ?? curWord?.base] ??
+                    [
+                        curWord?.noun,
+                        curWord?.verb,
+                        curWord?.modifier,
+                        curWord?.preposition,
+                        curWord?.particle,
+                        curWord?.numeral,
+                    ].filter((a) => a)[0]}
+            </FlashCard>
+        ) : (
+            <FlashCard isAnswer={true}>
+                {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
+                    .filter((p) => curWord?.[p])
+                    .map((pos) => (
+                        <div key={pos}>
+                            <Badge color="secondary" pill style={{ fontSize: '0.5em', marginRight: 5 }}>
+                                {pos}{' '}
+                            </Badge>
+                            {curWord?.[pos]}
+                        </div>
+                    ))}
+            </FlashCard>
+        );
     const imageCards =
         curWord?.images.map((url) => (
             <FlashCard key={url} isAnswer={true}>
