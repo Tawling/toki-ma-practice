@@ -13,8 +13,22 @@ export interface ProgressMap {
     [key: string]: WordProgress | undefined;
 }
 
-export const buildWordList = (settings: Settings, wordList: WordDef[]) =>
-    wordList.filter((word) => settings[word.category || '']);
+export interface WordDef {
+    [key: string]: string | string[] | undefined;
+    images: string[];
+    emoji: string;
+    base: string;
+    word: string;
+    category?: string;
+    etymology: string;
+    short: string;
+    noun?: string;
+    verb?: string;
+    modifier?: string;
+    preposition?: string;
+    particle?: string;
+    numeral?: string;
+}
 
 interface WordListResponse {
     [language: string]: {
@@ -39,23 +53,6 @@ interface WordListResponse {
     };
 }
 
-export interface WordDef {
-    [key: string]: string | string[] | undefined;
-    images: string[];
-    emoji: string;
-    base: string;
-    word: string;
-    category?: string;
-    etymology: string;
-    short: string;
-    noun?: string;
-    verb?: string;
-    modifier?: string;
-    preposition?: string;
-    particle?: string;
-    numeral?: string;
-}
-
 interface ImagesResponse {
     [word: string]: string[];
 }
@@ -63,6 +60,10 @@ interface ImagesResponse {
 interface CategoriesResponse {
     [category: string]: string[];
 }
+
+export const buildWordList = (settings: Settings, wordList: WordDef[]) =>
+    wordList.filter((word) => settings[word.category || '']);
+
 export const fetchWordList = async (language = 'English'): Promise<WordDef[]> => {
     const wordList = (await (await fetch('https://toki-ma.com/api/words.php')).json()) as WordListResponse;
     const defDict = wordList[language].words;
