@@ -361,28 +361,33 @@ const GameArea = ({ settings, settingsRef, progressMapRef, setProgressMap }: Pro
     const defCard =
         (settings?.useBaseForm || settings?.useRandomForm) && !newWord ? (
             <FlashCard isAnswer={true}>
-                {curWord?.[pos ?? curWord?.base] ??
-                    [
-                        curWord?.noun,
-                        curWord?.verb,
-                        curWord?.modifier,
-                        curWord?.preposition,
-                        curWord?.particle,
-                        curWord?.numeral,
-                    ].filter((a) => a)[0]}
+                {settings?.showEmoji || settings?.emojiOnly ? <div className={`emoji ${settings.emojiOnly ? 'emoji-only' : ''}`}>{curWord?.emoji}</div> : null}
+                {!settings?.emojiOnly
+                    ? curWord?.[pos ?? curWord?.base] ??
+                      [
+                          curWord?.noun,
+                          curWord?.verb,
+                          curWord?.modifier,
+                          curWord?.preposition,
+                          curWord?.particle,
+                          curWord?.numeral,
+                      ].filter((a) => a)[0]
+                    : null}
             </FlashCard>
         ) : (
             <FlashCard isAnswer={true}>
-                {['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
-                    .filter((p) => curWord?.[p])
-                    .map((pos) => (
-                        <div key={pos}>
-                            <Badge color="secondary" pill style={{ fontSize: '0.5em', marginRight: 5 }}>
-                                {pos}{' '}
-                            </Badge>
-                            {curWord?.[pos]}
-                        </div>
-                    ))}
+                {settings?.showEmoji || settings?.emojiOnly ? <div className={`emoji ${settings.emojiOnly ? 'emoji-only' : ''}`}>{curWord?.emoji}</div> : null}
+                {!settings?.emojiOnly &&
+                    ['noun', 'verb', 'modifier', 'preposition', 'particle', 'numeral']
+                        .filter((p) => curWord?.[p])
+                        .map((pos) => (
+                            <div key={pos}>
+                                <Badge color="secondary" pill style={{ fontSize: '0.5em', marginRight: 5 }}>
+                                    {pos}{' '}
+                                </Badge>
+                                {curWord?.[pos]}
+                            </div>
+                        ))}
             </FlashCard>
         );
     const imageCards =

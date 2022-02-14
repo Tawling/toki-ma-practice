@@ -27,6 +27,8 @@ export interface Settings {
     enableProgression: boolean;
     useBaseForm: boolean;
     useRandomForm: boolean;
+    showEmoji: boolean;
+    emojiOnly: boolean;
 }
 
 export interface SettingsPartial {
@@ -48,6 +50,8 @@ export interface SettingsPartial {
     enableProgression?: boolean;
     useBaseForm?: boolean;
     useRandomForm?: boolean;
+    showEmoji?: boolean;
+    emojiOnly?: boolean;
 }
 
 interface Props {
@@ -60,6 +64,7 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
     const [collapseSettings, setCollapseSettings] = useState(true);
     const [cardType, setCardType] = useState(settings.randomReversal ? 2 : (settings.reverseCards ? 1 : 0));
     const [definitionType, setDefinitionType] = useState(settings.useRandomForm ? 2 : (settings.useBaseForm ? 1 : 0));
+    const [emojiType, setEmojiType] = useState(settings.emojiOnly ? 2 : (settings.showEmoji ? 1 : 0));
 
     useEffect(() => {
         if (cardType === 0) {
@@ -80,6 +85,16 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
             updateSettings({ useBaseForm: false, useRandomForm: true });
         }
     }, [definitionType]);
+
+    useEffect(() => {
+        if (emojiType === 0) {
+            updateSettings({ showEmoji: false, emojiOnly: false });
+        } else if (emojiType === 1) {
+            updateSettings({ showEmoji: true, emojiOnly: false });
+        } else {
+            updateSettings({ showEmoji: false, emojiOnly: true });
+        }
+    }, [emojiType]);
     return (
         <div className="settings-container">
             <span className="setting-group-heading" onClick={() => setCollapseWords(!collapseWords)}>
@@ -238,6 +253,31 @@ const AppSettings = ({ settings, updateSettings }: Props) => {
                                     onClick={() => setDefinitionType(2)}
                                 >
                                     Randomize part of speech
+                                </Button>
+                            </ButtonGroup>
+                        </div>
+                        <div>
+                            <ButtonGroup>
+                                <Button
+                                    color={emojiType === 0 ? 'success' : 'secondary'}
+                                    active={false}
+                                    onClick={() => setEmojiType(0)}
+                                >
+                                    Definition Only
+                                </Button>
+                                <Button
+                                    color={emojiType === 1 ? 'success' : 'secondary'}
+                                    active={false}
+                                    onClick={() => setEmojiType(1)}
+                                >
+                                    Definition + Emoji
+                                </Button>
+                                <Button
+                                    color={emojiType === 2 ? 'success' : 'secondary'}
+                                    active={false}
+                                    onClick={() => setEmojiType(2)}
+                                >
+                                    Emoji Only
                                 </Button>
                             </ButtonGroup>
                         </div>
